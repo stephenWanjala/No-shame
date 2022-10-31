@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.NoShame" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#DB992017</item>
+        <item name="android:statusBarColor">#e5989b</item>
     </style>
 </resources>
