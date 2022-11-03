@@ -2,9 +2,10 @@ package com.wantech.noshame.feature_auth.presentation.signUp.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,8 +35,8 @@ fun SigUpScreen(navController: NavController) {
                 .fillMaxWidth()
                 .padding(16.dp)
                 .align(Alignment.Center),
-            contentColor = MaterialTheme.colors.surface,
-            backgroundColor = MaterialTheme.colors.onBackground,
+//            contentColor = MaterialTheme.colors.surface,
+//            backgroundColor = MaterialTheme.colors.onBackground,
             shape = RoundedCornerShape(12.dp),
 
             ) {
@@ -43,7 +44,7 @@ fun SigUpScreen(navController: NavController) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .align(Alignment.Center)
+//                    .align(Alignment.Center)
             ) {
 
                 Text(
@@ -53,7 +54,7 @@ fun SigUpScreen(navController: NavController) {
                         .padding(start = 32.dp, top = 32.dp),
                     fontWeight = FontWeight.ExtraBold,
                     fontStyle = FontStyle.Normal,
-                    style = MaterialTheme.typography.h6
+                    style = MaterialTheme.typography.headlineSmall
                 )
 
                 SignUpTextFields(buttonLabel = "Sign Up", signUpFinally = {

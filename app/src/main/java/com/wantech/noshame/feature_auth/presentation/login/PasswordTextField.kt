@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -20,7 +20,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordTextField(
     modifier: Modifier = Modifier,
@@ -71,11 +71,11 @@ fun PasswordTextField(
                 }
             ),
             colors = TextFieldDefaults.textFieldColors(
-                unfocusedIndicatorColor = MaterialTheme.colors.background,
-                unfocusedLabelColor = MaterialTheme.colors.background,
-                placeholderColor = MaterialTheme.colors.background,
-                leadingIconColor = MaterialTheme.colors.background.copy(alpha = 0.9f),
-                trailingIconColor = MaterialTheme.colors.background.copy(alpha = 0.9f)
+                unfocusedIndicatorColor = MaterialTheme.colorScheme.background,
+                unfocusedLabelColor = MaterialTheme.colorScheme.background,
+                placeholderColor = MaterialTheme.colorScheme.background,
+//                leadingIconColor = MaterialTheme.colors.background.copy(alpha = 0.9f),
+//                trailingIconColor = MaterialTheme.colors.background.copy(alpha = 0.9f)
             ),
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(
                 '*'

@@ -3,7 +3,7 @@ package com.wantech.noshame.feature_auth.presentation.forgotPassword.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -17,17 +17,21 @@ import com.wantech.noshame.feature_auth.presentation.signUp.components.IConWithT
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ForgotPasswordScreen(navController: NavController) {
     var emailState by remember {
         mutableStateOf("")
     }
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
+
     Scaffold(
-        scaffoldState = scaffoldState,
-        modifier = Modifier.fillMaxSize()
+//        scaffoldState = scaffoldState,
+        modifier = Modifier.fillMaxSize(),
+        snackbarHost = {
+        }
     ) {
 
         Box(
@@ -50,15 +54,15 @@ fun ForgotPasswordScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(8.dp)
                     .align(Alignment.Center),
-                contentColor = MaterialTheme.colors.surface,
-                backgroundColor = MaterialTheme.colors.onBackground,
+//                contentColor = MaterialTheme.colors.surface,
+//                backgroundColor = MaterialTheme.colors.onBackground,
                 shape = RoundedCornerShape(12.dp),
 
                 ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .align(Alignment.Center)
+//                        .align(Alignment.Center)
                         .padding(start = 16.dp, end = 16.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = CenterHorizontally
@@ -87,12 +91,14 @@ fun ForgotPasswordScreen(navController: NavController) {
                         text = "Send",
                         onClick = {
                             scope.launch {
-                                scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "Reset Password Email Sent",
-                                    actionLabel = "Dismiss",
-                                    duration = SnackbarDuration.Long
-                                )
+                                SnackbarHostState()
+                                    .showSnackbar(
+                                        message = "Link send To email",
+                                        actionLabel = "Dismis",
+                                        duration = SnackbarDuration.Long
+                                    )
                             }
+
                             emailState = ""
                         },
 

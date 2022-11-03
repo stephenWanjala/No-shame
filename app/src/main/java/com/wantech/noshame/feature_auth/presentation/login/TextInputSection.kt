@@ -4,16 +4,20 @@ import android.util.Patterns
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 
 fun TextInPutSection(
@@ -29,6 +33,7 @@ fun TextInPutSection(
         mutableStateOf("")
     }
 
+    val keyBoardController = LocalSoftwareKeyboardController.current
 
     LazyColumn {
         item {
@@ -55,7 +60,10 @@ fun TextInPutSection(
                     labelText = "Password",
                     placeHolder = "Your Password",
 
-                    onValueChange = { passwordState = it },
+                    onValueChange = {
+                        passwordState = it
+                        if (passwordState.length == 10) keyBoardController?.hide()
+                    },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                     ),
@@ -76,15 +84,15 @@ fun TextInPutSection(
                             checkedT.value = it
                         },
                         colors = CheckboxDefaults.colors(
-                            checkedColor = MaterialTheme.colors.primary,
-                            uncheckedColor = MaterialTheme.colors.surface,
+                            checkedColor = MaterialTheme.colorScheme.primary,
+                            uncheckedColor = MaterialTheme.colorScheme.surface,
 //                    checkmarkColor = Color.Magenta
                         ),
                         modifier = Modifier.padding(start = 8.dp)
                     )
                     Text(
                         text = "Remember Me",
-                        style = MaterialTheme.typography.caption
+                        style = MaterialTheme.typography.labelSmall
                     )
 
                     Spacer(modifier = Modifier.width(8.dp))
@@ -95,8 +103,8 @@ fun TextInPutSection(
                     ) {
                         Text(
                             text = "Forgot password?",
-                            color = MaterialTheme.colors.surface,
-                            style = MaterialTheme.typography.caption,
+                            color = MaterialTheme.colorScheme.surface,
+                            style = MaterialTheme.typography.labelSmall,
                         )
                     }
                 }
@@ -123,13 +131,13 @@ fun TextInPutSection(
                 ) {
                     Text(
                         text = "Don't Have Account?",
-                        color = MaterialTheme.colors.surface,
+                        color = MaterialTheme.colorScheme.surface,
 
                         )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "Sign Up",
-                        color = MaterialTheme.colors.surface,
+                        color = MaterialTheme.colorScheme.surface,
                         modifier = Modifier
 //
                             .padding(4.dp)
