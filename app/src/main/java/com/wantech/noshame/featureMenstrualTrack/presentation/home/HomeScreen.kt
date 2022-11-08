@@ -28,7 +28,9 @@ fun HomeScreen(navController: NavHostController) {
             modifier = Modifier.fillMaxWidth(),
 
             topBar = {
-                HomeTopBar(tittle = "No shame", navIcon = Icons.Default.Segment)
+                HomeTopBar(tittle = "No shame", navIcon = Icons.Default.Segment){
+
+                }
             }
         ) {
 

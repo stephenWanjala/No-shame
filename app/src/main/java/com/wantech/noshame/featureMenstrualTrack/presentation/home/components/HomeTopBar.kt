@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,7 +14,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeTopBar(
-    modifier: Modifier = Modifier, tittle: String, navIcon: ImageVector
+    modifier: Modifier = Modifier, tittle: String, navIcon: ImageVector,
+    OnclickNavIcon: () -> Unit
 ) {
 
 
@@ -27,10 +29,15 @@ fun HomeTopBar(
             modifier = Modifier.align(Alignment.TopStart)
         )
 
-        Icon(
-            imageVector = navIcon, contentDescription = "Nav icon",
+        IconButton(
+            onClick = { OnclickNavIcon() },
             modifier = Modifier.align(Alignment.TopEnd)
-        )
+        ) {
+            Icon(
+                imageVector = navIcon, contentDescription = "Nav icon",
+
+                )
+        }
     }
 
 
