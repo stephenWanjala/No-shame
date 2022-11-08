@@ -62,7 +62,7 @@ fun TextInPutSection(
 
                     onValueChange = {
                         passwordState = it
-                        if (passwordState.length == 10) keyBoardController?.hide()
+//                        if (passwordState.length == 10) keyBoardController?.hide()
                     },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
@@ -71,7 +71,9 @@ fun TextInPutSection(
                     )
 
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                        .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {

@@ -51,13 +51,13 @@ fun InputTextField(
             onValueChange = onValueChange,
             keyboardOptions = keyboardOptions,
             label = { Text(text = labelText) },
-            trailingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    if (trailingIcon != null) {
-                        Icon(imageVector = trailingIcon, contentDescription = null)
-                    }
-                }
-            },
+//            trailingIcon = {
+//                IconButton(onClick = { /*TODO*/ }) {
+//                    if (trailingIcon != null) {
+//                        Icon(imageVector = trailingIcon, contentDescription = null)
+//                    }
+//                }
+//            },
 //
             placeholder = {
                 Text(text = labelText)

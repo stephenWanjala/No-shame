@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.HomeScreen
 import com.wantech.noshame.feature_auth.presentation.NavigationHost
 import com.wantech.noshame.ui.theme.NoShameTheme
 
@@ -23,8 +24,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavigationHost(navController = navController)
-//                    HomeScreen(navController = navController)
+//                    NavigationHost(navController = navController)
+                    HomeScreen(navController = navController)
 
                 }
             }

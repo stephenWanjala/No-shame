@@ -16,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.wantech.noshame.feature_auth.presentation.components.MyData
+import com.wantech.noshame.feature_auth.presentation.components.SpinnerSample
 import com.wantech.noshame.feature_auth.presentation.login.AButton
 import com.wantech.noshame.feature_auth.presentation.login.InputTextField
 import com.wantech.noshame.feature_auth.presentation.login.PasswordTextField
@@ -74,6 +76,37 @@ fun SignUpTextFields(
                     ),
 
                     )
+                SpinnerSample(
+                    list = listOf(
+                        MyData(21,"21 days"),
+                        MyData(28,"28 days"),
+                        MyData(30,"30 days"),
+                    ),
+                    preselected = MyData(0,"Length of your cycle"),
+                    onSelectionChanged ={
+
+                    }
+                )
+                SpinnerSample(
+                    list = listOf(
+                        MyData(4,"4 days"),
+                        MyData(5,"5 days"),
+                        MyData(6,"6 days"),
+                    ),
+                    preselected = MyData(0,"period length"),
+                    onSelectionChanged ={
+
+                    }
+                )
+                SpinnerSample(
+                    list = listOf(
+
+                    ),
+                    preselected = MyData(0,"Last start date"),
+                    onSelectionChanged ={
+
+                    }
+                )
 
                 AButton(
                     text = buttonLabel,

@@ -26,11 +26,12 @@ fun SpinnerSample(
     var expanded by remember { mutableStateOf(false) } // initial value
 
     OutlinedCard(
-        modifier = modifier.clickable {
-            expanded = !expanded
-        }
+        modifier = modifier
+            .clickable {
+                expanded = !expanded
+            }
+            .padding(16.dp)
     ) {
-
 
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -39,7 +40,8 @@ fun SpinnerSample(
 
             Text(
                 text = selected.name,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
                     .padding(horizontal = 16.dp, vertical = 8.dp)
             )
             Icon(Icons.Outlined.ArrowDropDown, null, modifier = Modifier.padding(8.dp))
@@ -50,6 +52,7 @@ fun SpinnerSample(
                 modifier = Modifier.fillMaxWidth()   // delete this modifier and use .wrapContentWidth() if you would like to wrap the dropdown menu around the content
             ) {
                 list.forEach { listEntry ->
+
 
                     DropdownMenuItem(
                         onClick = {
@@ -90,7 +93,7 @@ fun SpinnerSample_Preview() {
     }
 }
 
-data class MyData (
+data class MyData(
     val id: Int,
     val name: String
 )

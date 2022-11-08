@@ -25,13 +25,16 @@ fun ForgotPasswordScreen(navController: NavController) {
     }
 //    val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-
+    val snackbarHostState = remember {
+        SnackbarHostState()
+    }
+    val keyBoardController = LocalContentColor.current
 
     Scaffold(
 //        scaffoldState = scaffoldState,
         modifier = Modifier.fillMaxSize(),
-        snackbarHost = {
-        }
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+
     ) {
 
         Box(
@@ -91,10 +94,10 @@ fun ForgotPasswordScreen(navController: NavController) {
                         text = "Send",
                         onClick = {
                             scope.launch {
-                                SnackbarHostState()
+                                snackbarHostState
                                     .showSnackbar(
-                                        message = "Link send To email",
-                                        actionLabel = "Dismis",
+                                        message = "Sent, check your email",
+                                        actionLabel = "Dismiss",
                                         duration = SnackbarDuration.Long
                                     )
                             }
@@ -114,4 +117,7 @@ fun ForgotPasswordScreen(navController: NavController) {
         }
 
     }
+
+
+
 }
