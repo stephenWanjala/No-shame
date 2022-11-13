@@ -1,12 +1,15 @@
 package com.wantech.noshame.featureMenstrualTrack.presentation.home.components
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.animateIntAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
@@ -15,44 +18,65 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.*
+import com.wantech.noshame.ui.theme.WhiteColor
 
 @Composable
 fun CustomProgressIndicator(
     canvasSize: Dp = 300.dp,
     indicatorValue: Int = 0,
-    maxiMumIndicatorValue: Int = 100,
-    backgroundIndicatorColor: Color=MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
-    backgroundIndicatorStrokeWidth: Float=20f,
-    foregroundIndicatorColor: Color=MaterialTheme.colorScheme.primary,
-    foregroundIndicatorStrokeWidth: Float=20f,
+    maxiMumIndicatorValue: Int = 30,
+    backgroundIndicatorColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+    backgroundIndicatorStrokeWidth: Float = 20f,
+    foregroundIndicatorColor: Color = Color.Blue,
+    foregroundIndicatorStrokeWidth: Float = 20f,
     modifier: Modifier
 
 ) {
-    val animatedIndicatorValue by remember {
+    var animatedIndicatorValue by remember {
         mutableStateOf(0f)
     }
+    var allowedIndicatorValue by remember {
+        mutableStateOf(maxiMumIndicatorValue)
+    }
+    allowedIndicatorValue =
+        if (indicatorValue <= maxiMumIndicatorValue) indicatorValue else maxiMumIndicatorValue
+    LaunchedEffect(key1 = allowedIndicatorValue) {
+        animatedIndicatorValue = indicatorValue.toFloat()
+    }
+    val percentage by lazy { (animatedIndicatorValue / maxiMumIndicatorValue) * 30 }
+
+    val sweepAngle by animateFloatAsState(
+        targetValue = (12 * percentage),
+        animationSpec = tween(durationMillis = 1000)
+    )
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
         modifier = modifier
             .size(canvasSize)
             .drawBehind {
-                val componentSize by lazy { size / 1.25f }
+                val componentSize = size / 1.25f
                 backgroundIndicator(
                     indicatorStrokeWidth = backgroundIndicatorStrokeWidth,
                     indicatorColor = backgroundIndicatorColor,
                     componentSize = componentSize
                 )
                 foregroundIndicator(
-                    sweepAngle = 180f,
+                    sweepAngle = sweepAngle,
                     indicatorColor = foregroundIndicatorColor,
                     indicatorStrokeWidth = foregroundIndicatorStrokeWidth,
                     componentSize = componentSize
                 )
             }
     ) {
-
+        val remainingDays by animateIntAsState(
+            targetValue = (maxiMumIndicatorValue - allowedIndicatorValue),
+            animationSpec = tween(durationMillis = 1000)
+        )
+        EmbeddedElements(remainingDays = remainingDays)
     }
 
 }
@@ -74,8 +98,8 @@ fun DrawScope.backgroundIndicator(
         ),
         size = componentSize,
         topLeft = Offset(
-            x=(size.width-componentSize.width)/2f,
-            y=(size.height-componentSize.height)/2f
+            x = (size.width - componentSize.width) / 2f,
+            y = (size.height - componentSize.height) / 2f
         )
 
     )
@@ -85,7 +109,7 @@ fun DrawScope.foregroundIndicator(
     componentSize: Size,
     indicatorColor: Color,
     indicatorStrokeWidth: Float,
-    sweepAngle:Float
+    sweepAngle: Float
 ) {
     drawArc(
         color = indicatorColor,
@@ -98,15 +122,44 @@ fun DrawScope.foregroundIndicator(
         ),
         size = componentSize,
         topLeft = Offset(
-            x=(size.width-componentSize.width)/2f,
-            y=(size.height-componentSize.height)/2f
+            x = (size.width - componentSize.width) / 2f,
+            y = (size.height - componentSize.height) / 2f
         )
 
     )
 }
 
 
-@Preview(showBackground = true,
+@OptIn(ExperimentalUnitApi::class)
+@Composable
+fun EmbeddedElements(
+    remainingDays: Int,
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "${if (remainingDays <= 9) "0$remainingDays" else remainingDays}",
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.headlineLarge.copy(
+                fontSize = TextUnit(value = 64F, type = TextUnitType.Sp),
+            ),
+            color = WhiteColor,
+//            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = " days",
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.headlineSmall,
+            color = WhiteColor
+        )
+    }
+}
+
+
+@Preview(
+    showBackground = true,
 //    showSystemUi = true
 )
 @Composable
