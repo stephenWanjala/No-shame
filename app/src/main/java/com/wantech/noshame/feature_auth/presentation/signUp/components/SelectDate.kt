@@ -11,6 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,7 +20,7 @@ fun SelectDate(
     onCLicKSelectDate: (String) -> Unit,
 
     ) {
-    var selectedDateState by remember {
+    val selectedDateState by remember {
         mutableStateOf("")
     }
     Column(
@@ -51,4 +52,11 @@ fun SelectDate(
             shape = RoundedCornerShape(10.dp)
         )
     }
+}
+
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun PreviewSelectDate() {
+    SelectDate(onCLicKSelectDate = {})
 }
