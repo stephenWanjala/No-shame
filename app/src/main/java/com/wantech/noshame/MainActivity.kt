@@ -24,8 +24,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-//                    NavigationHost(navController = navController)
-                    HomeScreen(navController = navController)
+                    NavigationHost(navController = navController)
+//                    HomeScreen(navController = navController)
 
                 }
             }
