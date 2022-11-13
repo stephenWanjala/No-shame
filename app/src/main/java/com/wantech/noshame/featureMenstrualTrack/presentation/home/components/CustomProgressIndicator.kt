@@ -4,6 +4,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
@@ -21,12 +24,16 @@ fun CustomProgressIndicator(
     canvasSize: Dp = 300.dp,
     indicatorValue: Int = 0,
     maxiMumIndicatorValue: Int = 100,
-    backgroundIndicatorColor: Color=MaterialTheme.colorScheme.onSurface.
-    copy(alpha = 0.3f),
+    backgroundIndicatorColor: Color=MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
     backgroundIndicatorStrokeWidth: Float=20f,
+    foregroundIndicatorColor: Color=MaterialTheme.colorScheme.primary,
+    foregroundIndicatorStrokeWidth: Float=20f,
     modifier: Modifier
 
 ) {
+    val animatedIndicatorValue by remember {
+        mutableStateOf(0f)
+    }
     Column(
         modifier = modifier
             .size(canvasSize)
@@ -35,6 +42,12 @@ fun CustomProgressIndicator(
                 backgroundIndicator(
                     indicatorStrokeWidth = backgroundIndicatorStrokeWidth,
                     indicatorColor = backgroundIndicatorColor,
+                    componentSize = componentSize
+                )
+                foregroundIndicator(
+                    sweepAngle = 180f,
+                    indicatorColor = foregroundIndicatorColor,
+                    indicatorStrokeWidth = foregroundIndicatorStrokeWidth,
                     componentSize = componentSize
                 )
             }
@@ -52,8 +65,32 @@ fun DrawScope.backgroundIndicator(
 ) {
     drawArc(
         color = indicatorColor,
-        startAngle = 150f,
+        startAngle = 180f,
         sweepAngle = 360f,
+        useCenter = false,
+        style = Stroke(
+            width = indicatorStrokeWidth,
+            cap = StrokeCap.Round
+        ),
+        size = componentSize,
+        topLeft = Offset(
+            x=(size.width-componentSize.width)/2f,
+            y=(size.height-componentSize.height)/2f
+        )
+
+    )
+}
+
+fun DrawScope.foregroundIndicator(
+    componentSize: Size,
+    indicatorColor: Color,
+    indicatorStrokeWidth: Float,
+    sweepAngle:Float
+) {
+    drawArc(
+        color = indicatorColor,
+        startAngle = 180f,
+        sweepAngle = sweepAngle,
         useCenter = false,
         style = Stroke(
             width = indicatorStrokeWidth,
@@ -73,7 +110,7 @@ fun DrawScope.backgroundIndicator(
 //    showSystemUi = true
 )
 @Composable
-fun CustomProgressIndicatorPreview() {
+private fun CustomProgressIndicatorPreview() {
 
     CustomProgressIndicator(modifier = Modifier)
 }
