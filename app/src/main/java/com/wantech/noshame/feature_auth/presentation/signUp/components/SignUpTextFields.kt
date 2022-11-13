@@ -4,9 +4,6 @@ package com.wantech.noshame.feature_auth.presentation.signUp.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -53,19 +50,16 @@ fun SignUpTextFields(
                 InputTextField(
                     textValue = emailFieldState,
                     labelText = "Email",
-                    tittle = "Example@gmail.com",
-                    trailingIcon = Icons.Default.Email,
+
                     onValueChange = { emailFieldState = it },
-                    first = true
-                )
+
+                    )
                 InputTextField(
                     textValue = userNameFieldState,
                     labelText = "UserName",
-                    tittle = "e.g Joh",
-                    trailingIcon = Icons.Default.Person,
                     onValueChange = { userNameFieldState = it },
-                    first = true
-                )
+
+                    )
                 PasswordTextField(
                     textValue = passwordState,
                     labelText = "Password",
@@ -76,37 +70,31 @@ fun SignUpTextFields(
                     ),
 
                     )
+                SelectDate(onCLicKSelectDate = {})
                 SpinnerSample(
                     list = listOf(
-                        MyData(21,"21 days"),
-                        MyData(28,"28 days"),
-                        MyData(30,"30 days"),
+                        MyData(21, "21 days"),
+                        MyData(28, "28 days"),
+                        MyData(30, "30 days"),
                     ),
-                    preselected = MyData(0,"Length of your cycle"),
-                    onSelectionChanged ={
+                    preselected = MyData(0, "Length of your cycle"),
+                    onSelectionChanged = {
 
                     }
                 )
                 SpinnerSample(
                     list = listOf(
-                        MyData(4,"4 days"),
-                        MyData(5,"5 days"),
-                        MyData(6,"6 days"),
+                        MyData(4, "4 days"),
+                        MyData(5, "5 days"),
+                        MyData(6, "6 days"),
+                        MyData(7, "7 days"),
                     ),
-                    preselected = MyData(0,"period length"),
-                    onSelectionChanged ={
+                    preselected = MyData(0, "period length"),
+                    onSelectionChanged = {
 
                     }
                 )
-                SpinnerSample(
-                    list = listOf(
 
-                    ),
-                    preselected = MyData(0,"Last start date"),
-                    onSelectionChanged ={
-
-                    }
-                )
 
                 AButton(
                     text = buttonLabel,
