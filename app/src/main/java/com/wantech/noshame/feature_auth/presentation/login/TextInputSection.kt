@@ -48,10 +48,8 @@ fun TextInPutSection(
                 InputTextField(
                     textValue = emailFieldState,
                     labelText = "Email",
-                    tittle = "Example@gmail.com",
-                    trailingIcon = Icons.Default.Email,
                     onValueChange = { emailFieldState = it },
-                    first = true
+
                 )
 
 

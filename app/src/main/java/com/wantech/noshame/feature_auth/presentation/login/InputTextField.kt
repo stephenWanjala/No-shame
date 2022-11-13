@@ -3,6 +3,7 @@ package com.wantech.noshame.feature_auth.presentation.login
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -25,11 +26,6 @@ fun InputTextField(
     textValue: String,
     labelText: String,
     maxLines: Int = 1,
-    first: Boolean = false,
-    singleLine: Boolean = true,
-    tittle: String = "",
-    trailingIconResource: Int? = null,
-    trailingIcon: ImageVector? = null,
     onValueChange: (String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         imeAction = ImeAction.Next,
@@ -79,7 +75,8 @@ fun InputTextField(
 //                trailingIconColor = MaterialTheme.colorScheme.background.copy(alpha = 0.9f)
             ),
             visualTransformation = visualTransformation,
-            maxLines = maxLines
+            maxLines = maxLines,
+            shape = RoundedCornerShape(10.dp)
         )
 
     }
