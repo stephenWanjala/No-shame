@@ -1,6 +1,5 @@
 package com.wantech.noshame.featureMenstrualTrack.presentation.home.components
 
-import android.content.Context
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
@@ -19,20 +18,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalFontFamilyResolver
-import androidx.compose.ui.text.ExperimentalTextApi
-import androidx.compose.ui.text.TextMeasurer
-import androidx.compose.ui.text.drawText
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.compose.ui.unit.*
 import com.wantech.noshame.ui.theme.WhiteColor
 
-@OptIn(ExperimentalTextApi::class, ExperimentalUnitApi::class)
+
 @Composable
 fun CustomProgressIndicator(
-    canvasSize: Dp = 200.dp,
+    canvasSize: Dp = 150.dp,
     indicatorValue: Int = 0,
     maxiMumIndicatorValue: Int = 30,
     backgroundIndicatorColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
@@ -40,9 +33,9 @@ fun CustomProgressIndicator(
     foregroundIndicatorColor: Color = Color.Blue,
     foregroundIndicatorStrokeWidth: Float = 20f,
     modifier: Modifier,
-    context: Context
 
-) {
+
+    ) {
     var animatedIndicatorValue by remember {
         mutableStateOf(0f)
     }
@@ -60,14 +53,7 @@ fun CustomProgressIndicator(
         targetValue = (12 * percentage),
         animationSpec = tween(durationMillis = 1000)
     )
-    val fontResolver = LocalFontFamilyResolver.current
-    val fallbackDensity = Density(context = context)
-    val fallBackLayoutDirection = LayoutDirection.Ltr
-    val mStyle = MaterialTheme.typography.headlineLarge.copy(
-        color = WhiteColor,
-        fontWeight = FontWeight.Thin,
-        fontSize = TextUnit(18f, type = TextUnitType.Sp)
-    )
+
     MaterialTheme.colorScheme.background
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -75,23 +61,6 @@ fun CustomProgressIndicator(
         modifier = modifier
             .size(canvasSize)
             .drawBehind {
-                val myComponentSize by lazy {
-                    canvasSize.value / 1.25f
-                }
-                drawText(
-                    text = "Next Cycle in",
-                    textMeasurer = TextMeasurer(
-                        fallbackFontFamilyResolver = fontResolver,
-                        fallbackDensity = fallbackDensity,
-                        fallbackLayoutDirection = fallBackLayoutDirection,
-                    ),
-                    style = mStyle,
-                    topLeft = Offset(
-                        x = ((canvasSize.value - myComponentSize) / 2) + 40,
-                        y = (canvasSize.value - (myComponentSize + 60))
-                    )
-                )
-
 
                 val componentSize = size / 1.25f
                 backgroundIndicator(
@@ -178,7 +147,7 @@ fun EmbeddedElements(
             text = "${if (remainingDays <= 9) "0$remainingDays" else remainingDays}",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.headlineLarge.copy(
-                fontSize = TextUnit(value = 64F, type = TextUnitType.Sp),
+                fontSize = TextUnit(value = 36F, type = TextUnitType.Sp),
             ),
             color = WhiteColor,
 //            modifier = Modifier.fillMaxWidth()
