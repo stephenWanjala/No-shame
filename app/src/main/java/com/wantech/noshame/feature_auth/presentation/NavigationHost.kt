@@ -1,5 +1,6 @@
 package com.wantech.noshame.feature_auth.presentation
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -11,12 +12,16 @@ import com.wantech.noshame.feature_auth.presentation.signUp.components.SigUpScre
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 
 @Composable
-fun NavigationHost(navController: NavHostController) {
+fun NavigationHost(
+    navController: NavHostController,
+    context: Context
+) {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.SignIn.route
-    ) {
+        startDestination = Screen.SignIn.route,
+
+        ) {
         composable(route = Screen.SignIn.route) {
             LoginScreen(navController)
         }
