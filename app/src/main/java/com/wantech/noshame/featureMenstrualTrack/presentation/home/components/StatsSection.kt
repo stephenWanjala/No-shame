@@ -39,7 +39,7 @@ fun StatsSection(
             text = "Next Cycle In",
             style = MaterialTheme.typography.headlineSmall.copy(
                 fontWeight = FontWeight.Light,
-                color = WhiteColor,
+                color = MaterialTheme.colorScheme.onBackground,
 
                 )
         )
@@ -69,12 +69,12 @@ fun StatsSection(
                         Text(
                             text = "Avg length",
                             style = MaterialTheme.typography.labelSmall,
-                            color = WhiteColor
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Icon(
                             imageVector = Icons.Rounded.QuestionMark, contentDescription = "info",
-                            tint = WhiteColor,
+                            tint = MaterialTheme.colorScheme.onBackground,
                             modifier = Modifier
                                 .size(15.dp)
                                 .clip(shape = CircleShape)
@@ -105,17 +105,17 @@ fun StatsSection(
                         Text(
                             text = "Avg cycle",
                             style = MaterialTheme.typography.labelSmall,
-                            color = WhiteColor
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Icon(
                             imageVector = Icons.Rounded.QuestionMark, contentDescription = "info",
-                            tint = WhiteColor,
+                            tint = MaterialTheme.colorScheme.onBackground,
                             modifier = Modifier
                                 .size(15.dp)
                                 .clip(shape = CircleShape)
                                 .background(
-                                    color = WhiteColor.copy(alpha = 0.1f),
+                                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f),
                                     shape = CircleShape
                                 )
                                 .clickable { /*TODO() extend for More Information*/ }
@@ -134,8 +134,8 @@ fun SubScriptedTex(
     modifier: Modifier = Modifier,
     normalText: String,
     subText: String,
-    normalTextColor: Color = WhiteColor,
-    subTextColor: Color = WhiteColor,
+    normalTextColor: Color = MaterialTheme.colorScheme.onBackground,
+    subTextColor: Color = MaterialTheme.colorScheme.onBackground,
     spaceTabs: Int = 0,
     normalTextSize: TextUnit = MaterialTheme.typography.headlineLarge.fontSize,
     subTextSize: TextUnit = MaterialTheme.typography.labelSmall.fontSize,
