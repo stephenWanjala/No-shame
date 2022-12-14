@@ -22,7 +22,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import com.wantech.noshame.ui.theme.WhiteColor
 
 @Composable
 fun StatsSection(
@@ -79,8 +78,9 @@ fun StatsSection(
                                 .size(15.dp)
                                 .clip(shape = CircleShape)
                                 .background(
-                                    color = WhiteColor.copy(alpha = 0.4f),
-                                    shape = CircleShape
+//                                    color = WhiteColor.copy(alpha = 0.4f),
+                                    shape = CircleShape,
+                                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f),
                                 )
                                 .clickable {
                                     /*TODO() extend for More Information*/

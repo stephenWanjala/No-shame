@@ -1,6 +1,5 @@
 package com.wantech.noshame.feature_auth.presentation
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -14,7 +13,7 @@ import com.wantech.noshame.feature_auth.presentation.util.Screen
 @Composable
 fun NavigationHost(
     navController: NavHostController,
-    context: Context
+
 ) {
 
     NavHost(
@@ -30,7 +29,7 @@ fun NavigationHost(
         }
 
         composable(route = Screen.Home.route) {
-            HomeScreen(navController = navController)
+            HomeScreen()
         }
         composable(route = Screen.ForgotPassword.route) {
             ForgotPasswordScreen(navController = navController)

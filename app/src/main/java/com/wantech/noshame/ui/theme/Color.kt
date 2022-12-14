@@ -10,12 +10,15 @@ val RedColorLight = Color(0xFFE5695F)
 val GreyIsh = Color(0xff264653)
 val lightRed = Color(0xfff4a261)
 val Redish = Color(0xffe76f51)
+val OnBackgroundLight = Color(0xFF413A38)
+val OnBPrimaryLight = Color(0xFF837D7B)
 
 //val  Primary =Color(0xffedede9)
 val Primary = Color(0x71E5989B)
 val Secondary = Color(0xffe5989b)
 val OnPrimary = Color(0xff6d6875)
 val Background = Color(0xffe5989b)
+val Onbackground = Color(0xFF4B4041)
 
 
 val Purple80 = Color(0xFFD0BCFF)

@@ -24,9 +24,8 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
 //                    NavigationHost(navController = navController)
 
-                    HomeScreen(
-                        navController = navController
-                    )
+                    HomeScreen()
+//                    DestinationsNavHost(navGraph = NavGraphs.root)
 
                 }
             }
