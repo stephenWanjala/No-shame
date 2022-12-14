@@ -20,7 +20,6 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
-import com.wantech.noshame.ui.theme.WhiteColor
 
 
 @Composable
@@ -30,7 +29,7 @@ fun CustomProgressIndicator(
     maxiMumIndicatorValue: Int = 30,
     backgroundIndicatorColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
     backgroundIndicatorStrokeWidth: Float = 20f,
-    foregroundIndicatorColor: Color = Color.Blue,
+    foregroundIndicatorColor: Color = MaterialTheme.colorScheme.onBackground,
     foregroundIndicatorStrokeWidth: Float = 20f,
     modifier: Modifier,
 
@@ -149,14 +148,14 @@ fun EmbeddedElements(
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontSize = TextUnit(value = 36F, type = TextUnitType.Sp),
             ),
-            color = WhiteColor,
+            color = MaterialTheme.colorScheme.onBackground,
 //            modifier = Modifier.fillMaxWidth()
         )
         Text(
             text = " days",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.headlineSmall,
-            color = WhiteColor
+            color = MaterialTheme.colorScheme.onBackground
         )
     }
 }
