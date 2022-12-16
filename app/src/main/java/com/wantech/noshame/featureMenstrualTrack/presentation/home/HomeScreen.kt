@@ -13,10 +13,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.HomeTopBar
-import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItemModel
-import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItems
-import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.StatsSection
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.*
+import com.wantech.noshame.featureMenstrualTrack.presentation.util.FertilityStatus
+import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 
@@ -52,9 +51,8 @@ fun HomeScreen(
 
                 })
 
-                Spacer(modifier = Modifier.height(16.dp))
-
-
+                Spacer(modifier = Modifier.height(64.dp))
+                DayStatistics(today = LocalDate.now(), fertilityStatus = FertilityStatus.High)
             }
         }
 
