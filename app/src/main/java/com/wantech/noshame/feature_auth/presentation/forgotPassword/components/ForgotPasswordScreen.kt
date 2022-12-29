@@ -35,7 +35,7 @@ fun ForgotPasswordScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
 
-    ) {
+        ) {
 
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -105,19 +105,20 @@ fun ForgotPasswordScreen(navController: NavController) {
                             emailState = ""
                         },
 
-                        modifier = Modifier.padding(bottom = 8.dp)
-                    ) {
-                        (emailState.isNotBlank() &&
-                                android.util.Patterns.EMAIL_ADDRESS.matcher(emailState).matches()
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        buttonEnabled = ({
+                            emailState.isNotBlank() &&
+                                    android.util.Patterns.EMAIL_ADDRESS.matcher(emailState)
+                                        .matches()
+                        }
                                 )
-                    }
+                    )
                 }
             }
             val paddingValues = it.calculateTopPadding()
         }
 
     }
-
 
 
 }

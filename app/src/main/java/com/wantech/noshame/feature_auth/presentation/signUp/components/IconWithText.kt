@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -53,5 +54,26 @@ fun IConWithText(
                 .padding(start = 32.dp, bottom = 16.dp, end = 32.dp)
         )
 
+    }
+}
+
+@Composable
+fun Header(headerText: String, headerEndText: String, modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = headerText,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.headlineSmall,
+        )
+        Text(
+            text = headerEndText, textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.labelMedium
+        )
     }
 }

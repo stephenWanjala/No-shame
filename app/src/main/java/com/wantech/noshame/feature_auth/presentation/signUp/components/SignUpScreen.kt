@@ -21,13 +21,11 @@ fun SigUpScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        IConWithText(
-            modifier = Modifier.align(Alignment.TopCenter), onClick = {
-                navController.navigate(Screen.SignIn.route) {
-                    popUpTo(Screen.SignIn.route)
-                }
-            },
-            text = "Sign Up Account"
+
+        Header(
+            headerText = "Sign Up",
+            headerEndText = "1/2",
+            modifier = Modifier.align(Alignment.TopCenter)
         )
 
         Card(
@@ -57,9 +55,12 @@ fun SigUpScreen(navController: NavController) {
                     style = MaterialTheme.typography.headlineSmall
                 )
 
-                SignUpTextFields(buttonLabel = "Sign Up", signUpFinally = {
-                    navController.navigate(Screen.Home.route) {
-                        popUpTo(Screen.Home.route)
+                SignUpTextFields(buttonLabel = "Next", toMoreInforScreen = {
+                    navController.navigate(Screen.MoreInfoScreen.route) {
+                        popUpTo(
+                            Screen.MoreInfoScreen
+                                .route
+                        )
                     }
                 }) {
                     navController.navigate(Screen.SignIn.route) {

@@ -18,13 +18,14 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SelectDate(
     onCLicKSelectDate: (String) -> Unit,
+    modifier: Modifier
 
-    ) {
+) {
     val selectedDateState by remember {
         mutableStateOf("")
     }
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
 
@@ -58,5 +59,5 @@ fun SelectDate(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewSelectDate() {
-    SelectDate(onCLicKSelectDate = {})
+    SelectDate(onCLicKSelectDate = {}, modifier = Modifier)
 }

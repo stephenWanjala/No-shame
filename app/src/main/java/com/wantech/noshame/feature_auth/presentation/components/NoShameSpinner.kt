@@ -14,23 +14,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SpinnerSample(
-    list: List<MyData>,
-    preselected: MyData,
-    onSelectionChanged: (myData: MyData) -> Unit,
-    modifier: Modifier = Modifier
+fun NoShameSpinner(
+    list: List<SpinnerData>,
+    preselected: SpinnerData,
+    onSelectionChanged: (spinnerData: SpinnerData) -> Unit,
+    modifier: Modifier = Modifier,
+    isEnabled: () -> Boolean
 ) {
 
     var selected by remember { mutableStateOf(preselected) }
     var expanded by remember { mutableStateOf(false) } // initial value
 
-    OutlinedCard(
+
+
+    Card(
+
         modifier = modifier
             .clickable {
                 expanded = !expanded
             }
-            .padding(16.dp)
+            .padding(16.dp),
+        shape = CardDefaults.outlinedShape,
+        colors = CardDefaults.outlinedCardColors(),
+        elevation = CardDefaults.outlinedCardElevation(),
+        border = CardDefaults.outlinedCardBorder(),
+        onClick = { expanded = !expanded },
+        enabled = isEnabled()
+
     ) {
 
         Row(
@@ -82,18 +94,22 @@ fun SpinnerSample(
 @Composable
 fun SpinnerSample_Preview() {
     MaterialTheme {
-        val myData = listOf(MyData(0, "Apples"), MyData(1, "Bananas"), MyData(2, "Kiwis"))
+        val spinnerData =
+            listOf(SpinnerData(0, "Apples"), SpinnerData(1, "Bananas"), SpinnerData(2, "Kiwis"))
 
-        SpinnerSample(
-            myData,
-            preselected = myData.first(),
+        NoShameSpinner(
+            spinnerData,
+            preselected = spinnerData.first(),
             onSelectionChanged = { },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            isEnabled = {
+                true
+            }
         )
     }
 }
 
-data class MyData(
+data class SpinnerData(
     val id: Int,
     val name: String
 )

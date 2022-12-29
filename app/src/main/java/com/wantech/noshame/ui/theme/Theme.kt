@@ -7,6 +7,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -27,7 +28,9 @@ private val LightColorScheme = lightColorScheme(
     secondary = SecondaryLight,
     tertiary = TertiaryLight,
     onBackground = OnBackgroundLight,
-    onPrimary = OnBPrimaryLight
+    onPrimary = OnBPrimaryLight,
+    surfaceVariant = SurfaceVariantLight,
+    surface = Color(0x8CFFFBFE)
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),

@@ -4,6 +4,8 @@ package com.wantech.noshame.feature_auth.presentation.signUp.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -13,9 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.wantech.noshame.feature_auth.presentation.components.MyData
-import com.wantech.noshame.feature_auth.presentation.components.SpinnerSample
-import com.wantech.noshame.feature_auth.presentation.login.AButton
+import com.wantech.noshame.feature_auth.presentation.login.ATextButton
 import com.wantech.noshame.feature_auth.presentation.login.InputTextField
 import com.wantech.noshame.feature_auth.presentation.login.PasswordTextField
 
@@ -24,7 +24,7 @@ import com.wantech.noshame.feature_auth.presentation.login.PasswordTextField
 
 fun SignUpTextFields(
     buttonLabel: String,
-    signUpFinally: () -> Unit,
+    toMoreInforScreen: () -> Unit,
     onClickToLogin: () -> Unit
 ) {
     var emailFieldState by remember {
@@ -68,44 +68,19 @@ fun SignUpTextFields(
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                     ),
-
                     )
-                SelectDate(onCLicKSelectDate = {})
-                SpinnerSample(
-                    list = listOf(
-                        MyData(21, "21 days"),
-                        MyData(28, "28 days"),
-                        MyData(30, "30 days"),
-                    ),
-                    preselected = MyData(0, "Length of your cycle"),
-                    onSelectionChanged = {
 
-                    }
-                )
-                SpinnerSample(
-                    list = listOf(
-                        MyData(4, "4 days"),
-                        MyData(5, "5 days"),
-                        MyData(6, "6 days"),
-                        MyData(7, "7 days"),
-                    ),
-                    preselected = MyData(0, "period length"),
-                    onSelectionChanged = {
-
-                    }
-                )
-
-
-                AButton(
+                ATextButton(
                     text = buttonLabel,
-                    onClick = signUpFinally,
+                    onClick = toMoreInforScreen,
                     modifier = Modifier,
                     buttonEnabled = {
-                        passwordState.isNotBlank() && (passwordState.length >= 6) &&
+                        passwordState.isNotBlank() && (passwordState.length >= 8) &&
                                 userNameFieldState.isNotBlank() && emailFieldState.isNotBlank()
                                 && android.util.Patterns.EMAIL_ADDRESS.matcher(emailFieldState)
                             .matches()
-                    }
+                    },
+                    leadingIcon = Icons.Default.ArrowForwardIos
                 )
                 TextButton(
                     onClick = onClickToLogin,
