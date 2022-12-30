@@ -5,7 +5,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,6 +21,15 @@ fun MoreInformationScreen(navController: NavHostController) {
     Scaffold {
         val unUsedPadding = it.calculateTopPadding()
 
+        var dateNotNull by remember {
+            mutableStateOf(false)
+        }
+        var periodLengthEnable by remember {
+            mutableStateOf(false)
+        }
+        var enableFinishButton by remember {
+            mutableStateOf(false)
+        }
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -35,7 +44,16 @@ fun MoreInformationScreen(navController: NavHostController) {
                 shape = RoundedCornerShape(12.dp),
 
                 ) {
-                SelectDate(modifier = Modifier.padding(top = 8.dp), onCLicKSelectDate = {})
+                SelectDate(
+                    modifier = Modifier.padding(top = 8.dp),
+                    onCLicKSelectDate = {
+
+                    },
+                    checkSelectedDateState = { date ->
+                        dateNotNull = date != null
+                        dateNotNull
+                    }
+                )
                 NoShameSpinner(
                     list = listOf(
                         SpinnerData(21, "21 days"),
@@ -44,9 +62,9 @@ fun MoreInformationScreen(navController: NavHostController) {
                     ),
                     preselected = SpinnerData(0, "Length of your cycle"),
                     onSelectionChanged = {
-
+                        periodLengthEnable = true
                     },
-                    isEnabled = { false }
+                    isEnabled = { dateNotNull }
                 )
                 NoShameSpinner(
                     list = listOf(
@@ -57,9 +75,9 @@ fun MoreInformationScreen(navController: NavHostController) {
                     ),
                     preselected = SpinnerData(0, "period length"),
                     onSelectionChanged = {
-
+                        enableFinishButton = true
                     },
-                    isEnabled = { false }
+                    isEnabled = { dateNotNull }
                 )
 
 
@@ -75,7 +93,7 @@ fun MoreInformationScreen(navController: NavHostController) {
                     },
                     modifier = Modifier,
                     buttonEnabled = {
-                        false
+                        enableFinishButton
                     },
                 )
 

@@ -63,7 +63,7 @@ fun Header(headerText: String, headerEndText: String, modifier: Modifier = Modif
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.SpaceAround,
+        horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
@@ -73,7 +73,7 @@ fun Header(headerText: String, headerEndText: String, modifier: Modifier = Modif
         )
         Text(
             text = headerEndText, textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.labelMedium
+            style = MaterialTheme.typography.labelMedium,
         )
     }
 }
