@@ -16,6 +16,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vanpra.composematerialdialogs.MaterialDialog
+import com.vanpra.composematerialdialogs.datetime.date.DatePickerDefaults
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import com.wantech.noshame.R
@@ -72,19 +73,31 @@ fun SelectDate(
             ),
             shape = RoundedCornerShape(10.dp)
         )
-        MaterialDialog(dialogState = datePickerDialogState,
+        MaterialDialog(
+            dialogState = datePickerDialogState,
             buttons = {
                 positiveButton(text = stringResource(R.string.ok))
                 negativeButton(text = stringResource(R.string.cancel))
-            }) {
+            },
+            backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+//            shape = RoundedCornerShape(20.dp),
+
+        ) {
             datepicker(
                 initialDate = selectedDate ?: LocalDate.now(),
                 title = "select Date",
                 allowedDateValidator = {
                     it.isBefore(LocalDate.now()) && it.isAfter(
-                        LocalDate.now().minusDays(33)
-                    )
-                }
+                        LocalDate.now().minusDays(30)
+                    ) || it == LocalDate.now()
+                },
+                colors = DatePickerDefaults.colors(
+                    dateActiveBackgroundColor = MaterialTheme.colorScheme.primary,
+                    calendarHeaderTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    headerBackgroundColor = MaterialTheme.colorScheme.secondary,
+                    headerTextColor = MaterialTheme.colorScheme.onSecondary,
+
+                )
             ) {
                 selectedDate = it
                 checkSelectedDateState(selectedDate)

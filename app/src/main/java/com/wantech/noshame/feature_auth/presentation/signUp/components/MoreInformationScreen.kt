@@ -39,8 +39,6 @@ fun MoreInformationScreen(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-//            contentColor = MaterialTheme.colors.surface,
-//            backgroundColor = MaterialTheme.colors.onBackground,
                 shape = RoundedCornerShape(12.dp),
 
                 ) {
@@ -77,7 +75,7 @@ fun MoreInformationScreen(navController: NavHostController) {
                     onSelectionChanged = {
                         enableFinishButton = true
                     },
-                    isEnabled = { dateNotNull }
+                    isEnabled = { periodLengthEnable }
                 )
 
 
