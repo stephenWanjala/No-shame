@@ -1,10 +1,7 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -58,7 +55,11 @@ fun IConWithText(
 }
 
 @Composable
-fun Header(headerText: String, headerEndText: String, modifier: Modifier = Modifier) {
+fun Header(
+    modifier: Modifier = Modifier,
+    headerText: String? = null,
+    headerEndText: String
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -66,11 +67,14 @@ fun Header(headerText: String, headerEndText: String, modifier: Modifier = Modif
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = headerText,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.headlineSmall,
-        )
+        if (headerText != null) {
+            Text(
+                text = headerText,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineSmall,
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+        }
         Text(
             text = headerEndText, textAlign = TextAlign.Center,
             style = MaterialTheme.typography.labelMedium,

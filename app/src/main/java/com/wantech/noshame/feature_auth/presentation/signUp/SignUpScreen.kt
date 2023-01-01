@@ -1,4 +1,4 @@
-package com.wantech.noshame.feature_auth.presentation.signUp.components
+package com.wantech.noshame.feature_auth.presentation.signUp
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,6 +13,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.wantech.noshame.feature_auth.presentation.signUp.components.Header
+import com.wantech.noshame.feature_auth.presentation.signUp.components.SignUpTextFields
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 
 @Composable
@@ -23,7 +25,7 @@ fun SigUpScreen(navController: NavController) {
     ) {
 
         Header(
-            headerText = "Sign Up",
+//            headerText = "Sign Up",
             headerEndText = "1/2",
             modifier = Modifier.align(Alignment.TopCenter)
         )
@@ -60,11 +62,15 @@ fun SigUpScreen(navController: NavController) {
                         popUpTo(
                             Screen.MoreInfoScreen
                                 .route
-                        )
+                        ) {
+                            inclusive = true
+                        }
                     }
                 }) {
                     navController.navigate(Screen.SignIn.route) {
-                        popUpTo(Screen.SignIn.route)
+                        popUpTo(Screen.SignIn.route) {
+                            inclusive = true
+                        }
                     }
 
                 }
