@@ -5,6 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
 //    id 'com.google.devtools.ksp' version '1.6.21-1.0.6'
     id 'com.google.devtools.ksp' version '1.7.22-1.0.8'
+    id 'com.google.gms.google-services'
 
 }
 
@@ -60,6 +61,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
     def lifecycle_version = "2.6.0-alpha03"
     def nav_version = "2.5.3"
     def room_version = "2.4.3"
