@@ -12,11 +12,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.wantech.noshame.R
+import com.wantech.noshame.feature_auth.presentation.login.componets.TextInPutSection
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 
 @Composable
@@ -47,7 +50,7 @@ fun LoginScreen(navController: NavController) {
 
 
                 Text(
-                    text = "Hello And Welcome Back",
+                    text = stringResource(R.string.sign_in_welcome_text),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 32.dp, top = 32.dp),
@@ -57,7 +60,7 @@ fun LoginScreen(navController: NavController) {
                     color = MaterialTheme.colorScheme.background
                 )
                 TextInPutSection(
-                    buttonLabel = "Sign In",
+                    buttonLabel = stringResource(id = R.string.sign_in),
                     onClickLoginButton = { navController.navigate(Screen.Home.route) },
                     onClickToSignUp = {
                         navController.navigate(Screen.SignUp.route) {
@@ -81,7 +84,7 @@ fun LoginScreen(navController: NavController) {
 
 
         Text(
-            text = "Login Account",
+            text = stringResource(R.string.login_Account),
             style = MaterialTheme.typography.headlineSmall,
             fontFamily = FontFamily.Monospace,
             modifier = Modifier

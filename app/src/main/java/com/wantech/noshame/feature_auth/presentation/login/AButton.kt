@@ -54,7 +54,6 @@ fun ATextButton(
     modifier: Modifier,
     buttonEnabled: () -> Boolean,
     leadingIcon: ImageVector? = null,
-    trailingIcon: ImageVector? = null,
     enabledColor: Color = MaterialTheme.colorScheme.surface
 ) {
     OutlinedButton(

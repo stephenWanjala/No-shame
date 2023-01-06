@@ -1,4 +1,4 @@
-package com.wantech.noshame.feature_auth.presentation.login
+package com.wantech.noshame.feature_auth.presentation.login.componets
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -83,6 +83,79 @@ fun PasswordTextField(
             ),
             maxLines = maxLines,
             shape = RoundedCornerShape(10.dp)
+
+        )
+
+    }
+
+}
+
+
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
+@Composable
+fun PasswordTextField(
+    modifier: Modifier = Modifier,
+    passwordModifier: Modifier = Modifier,
+    textValue: String,
+    labelText: String,
+    maxLines: Int = 1,
+    placeHolder: String,
+    onValueChange: (String) -> Unit,
+    keyboardOptions: KeyboardOptions = KeyboardOptions(
+        imeAction = ImeAction.Next,
+        keyboardType = KeyboardType.Email,
+
+        ),
+    onSendAction: (() -> Unit?)? = null
+
+) {
+    var passwordVisibility: Boolean by remember { mutableStateOf(false) }
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        val keyBoardController = LocalSoftwareKeyboardController.current
+        OutlinedTextField(
+//            value = textValue.take(if (textValue.length >= 10) 10 else textValue.length),
+            value = textValue,
+            onValueChange = onValueChange,
+            keyboardOptions = keyboardOptions,
+            label = { Text(text = labelText) },
+            trailingIcon = {
+                IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
+                    Icon(
+                        imageVector = if (passwordVisibility) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                        contentDescription = "passwordVisibility Icon"
+                    )
+                }
+            },
+
+            placeholder = {
+                Text(text = placeHolder)
+            },
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyBoardController?.hide()
+                },
+                onSend = {
+                    keyBoardController?.hide()
+                    onSendAction?.let { it() }
+                }
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                unfocusedIndicatorColor = MaterialTheme.colorScheme.background,
+                unfocusedLabelColor = MaterialTheme.colorScheme.background,
+                placeholderColor = MaterialTheme.colorScheme.background,
+
+                ),
+            visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(
+                '*'
+            ),
+            maxLines = maxLines,
+            shape = RoundedCornerShape(10.dp),
+            modifier = passwordModifier
 
         )
 

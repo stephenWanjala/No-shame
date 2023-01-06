@@ -3,4 +3,10 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="error_unknown">Unknown Error</string>
+    <string name="next">Next</string>
+    <string name="already_have_Account">Already Have an Account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="createAccount">Create Account</string>
+    <string name="sign_in_welcome_text">Hello And Welcome Back</string>
+    <string name="login_Account">Login Account</string>
 </resources>

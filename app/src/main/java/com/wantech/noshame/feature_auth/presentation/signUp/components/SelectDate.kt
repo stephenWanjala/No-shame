@@ -71,7 +71,8 @@ fun SelectDate(
                 unfocusedLabelColor = MaterialTheme.colorScheme.background,
                 placeholderColor = MaterialTheme.colorScheme.background,
             ),
-            shape = RoundedCornerShape(10.dp)
+            shape = RoundedCornerShape(10.dp),
+            readOnly = true
         )
         MaterialDialog(
             dialogState = datePickerDialogState,
