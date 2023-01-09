@@ -44,4 +44,6 @@ class AuthRepositoryImpl @Inject constructor(private val auth: FirebaseAuth) : A
     override fun isCurrentUserExist(): Flow<Boolean> = flow { emit(auth.currentUser != null) }
 
     override suspend fun logoutUser() = auth.signOut()
+    override suspend fun getUserId(): Flow<String> =
+        flow { auth.currentUser?.uid?.let { emit(it) } }
 }

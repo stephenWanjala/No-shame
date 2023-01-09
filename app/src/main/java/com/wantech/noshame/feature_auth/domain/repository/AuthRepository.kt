@@ -19,4 +19,6 @@ interface AuthRepository {
     fun isCurrentUserExist(): Flow<Boolean>
 
     suspend fun logoutUser()
+
+    suspend fun getUserId(): Flow<String>
 }

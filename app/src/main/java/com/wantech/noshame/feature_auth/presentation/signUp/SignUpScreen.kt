@@ -6,8 +6,10 @@ import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.wantech.noshame.R
 import com.wantech.noshame.feature_auth.presentation.signUp.components.SignUpTextFields
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 
@@ -38,16 +40,17 @@ fun SigUpScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Center
             ) {
 
-                SignUpTextFields(buttonLabel = "Next", toMoreInforScreen = {
-                    navController.navigate(Screen.MoreInfoScreen.route) {
-                        popUpTo(
-                            Screen.MoreInfoScreen
-                                .route
-                        ) {
-                            inclusive = true
+                SignUpTextFields(buttonLabel = stringResource(id = R.string.next),
+                    toMoreInforScreen = {
+                        navController.navigate(Screen.MoreInfoScreen.route) {
+                            popUpTo(
+                                Screen.MoreInfoScreen
+                                    .route
+                            ) {
+                                inclusive = true
+                            }
                         }
-                    }
-                },
+                    },
                     onClickToLogin = {})
             }
 
