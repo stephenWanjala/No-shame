@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.wantech.noshame.feature_auth.presentation.login.AButton
-import com.wantech.noshame.feature_auth.presentation.login.InputTextField
+import com.wantech.noshame.feature_auth.presentation.login.componets.InputTextField
 import com.wantech.noshame.feature_auth.presentation.signUp.components.IConWithText
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 import kotlinx.coroutines.launch

@@ -7,7 +7,6 @@ sealed class SignupEvent {
     data class EnteredEmail(val value: String) : SignupEvent()
     data class EnteredPassword(val value: String) : SignupEvent()
     object TogglePasswordVisibility : SignupEvent()
-    object ToSignInScreen : SignupEvent()
     object Signup : SignupEvent()
     data class ChooseLengthCycle(val spinnerData: SpinnerData) : SignupEvent()
 }

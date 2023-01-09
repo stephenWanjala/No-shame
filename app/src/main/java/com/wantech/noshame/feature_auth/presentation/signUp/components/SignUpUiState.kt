@@ -1,5 +1,6 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components
 
+import com.google.firebase.auth.AuthResult
 import com.wantech.noshame.core.util.UiText
 
 data class SignUpUIState(
@@ -37,6 +38,6 @@ data class SignUpUIState(
 
 data class SignUpState(
     val isLoading: Boolean = false,
-//    val signUp: AuthResult?= null,
+    val signUp: AuthResult? = null,
     val error: UiText? = null
 )

@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.wantech.noshame.R
 import com.wantech.noshame.feature_auth.presentation.login.ATextButton
-import com.wantech.noshame.feature_auth.presentation.login.InputTextField
+import com.wantech.noshame.feature_auth.presentation.login.componets.InputTextField
 import com.wantech.noshame.feature_auth.presentation.login.componets.PasswordTextField
 import com.wantech.noshame.feature_auth.presentation.signUp.SignUpViewModel
 
@@ -126,7 +126,7 @@ fun SignUpTextFields(
 
                     ATextButton(
                         text = stringResource(id = R.string.next),
-                        onClick = { },
+                        onClick = toMoreInforScreen,
                         modifier = Modifier.fillMaxWidth(0.6f),
                         buttonEnabled = {
                             state.email.isNotBlank() && state.password.isNotBlank() &&
@@ -140,7 +140,7 @@ fun SignUpTextFields(
                     )
 
                     TextButton(
-                        onClick = { },
+                        onClick = onClickToLogin,
                         modifier = Modifier.fillMaxWidth(),
                         contentPadding = PaddingValues(2.dp)
                     ) {

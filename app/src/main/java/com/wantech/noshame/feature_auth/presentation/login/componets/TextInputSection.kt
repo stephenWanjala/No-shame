@@ -14,7 +14,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.wantech.noshame.feature_auth.presentation.login.AButton
-import com.wantech.noshame.feature_auth.presentation.login.InputTextField
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
