@@ -56,11 +56,7 @@ fun SignUpTextFields(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-//                Text(
-//                    text = "Create Account",
-//                    style = MaterialTheme.typography.headlineSmall,
-//                    textAlign = TextAlign.Center
-//                )
+
                 item {
                     Text(
                         text = stringResource(id = R.string.createAccount),

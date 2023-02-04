@@ -57,11 +57,12 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.wantech.noshame'
 }
 
 dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.2'
     def lifecycle_version = "2.6.0-alpha03"
     def nav_version = "2.5.3"
     def room_version = "2.4.3"

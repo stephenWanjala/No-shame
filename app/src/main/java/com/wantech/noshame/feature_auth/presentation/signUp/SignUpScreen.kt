@@ -51,7 +51,16 @@ fun SigUpScreen(navController: NavController) {
                             }
                         }
                     },
-                    onClickToLogin = {})
+                    onClickToLogin = {
+                        navController.navigate(Screen.SignIn.route) {
+                            popUpTo(
+                                Screen.SignIn
+                                    .route
+                            ) {
+                                inclusive = true
+                            }
+                        }
+                    })
             }
 
         }
