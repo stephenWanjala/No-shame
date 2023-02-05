@@ -5,13 +5,13 @@ import android.util.Patterns
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -19,26 +19,24 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.wantech.noshame.R
 import com.wantech.noshame.feature_auth.presentation.login.AButton
+import com.wantech.noshame.feature_auth.presentation.login.LogInViewModel
+import com.wantech.noshame.feature_auth.presentation.login.LoginEvent
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 
 fun TextInPutSection(
     buttonLabel: String,
     onClickLoginButton: () -> Unit,
     onClickToSignUp: () -> Unit,
-    onForgetPassword: () -> Unit
+    onForgetPassword: () -> Unit,
+    viewModel: LogInViewModel = hiltViewModel()
 ) {
-    var emailFieldState by remember {
-        mutableStateOf("")
-    }
-    var passwordState by remember {
-        mutableStateOf("")
-    }
 
-    val keyBoardController = LocalSoftwareKeyboardController.current
+
+    val state = viewModel.state.value
     val configuration = LocalConfiguration.current
     var orientation by remember {
         mutableStateOf(Configuration.ORIENTATION_PORTRAIT)
@@ -79,9 +77,9 @@ fun TextInPutSection(
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
                             InputTextField(
-                                textValue = emailFieldState,
+                                textValue = state.email,
                                 labelText = "Email",
-                                onValueChange = { emailFieldState = it },
+                                onValueChange = { viewModel.onEvent(LoginEvent.EnteredEmail(it)) },
                                 modifier = Modifier.weight(0.5f),
                                 keyboardOptions = KeyboardOptions(
                                     keyboardType = KeyboardType.Email,
@@ -93,12 +91,12 @@ fun TextInPutSection(
 
                             PasswordTextField(
                                 modifier = Modifier.weight(0.5f),
-                                textValue = passwordState,
+                                textValue = state.password,
                                 labelText = "Password",
 
                                 placeHolder = "Your Password",
                                 onValueChange = {
-                                    passwordState = it
+                                    viewModel.onEvent(LoginEvent.EnteredPassword(it))
 
                                 },
                                 keyboardOptions = KeyboardOptions(
@@ -134,8 +132,8 @@ fun TextInPutSection(
                             modifier = Modifier.fillMaxWidth(0.6f),
                             buttonEnabled = {
 
-                                passwordState.isNotBlank() && ((passwordState.length >= 8) && emailFieldState.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(
-                                    emailFieldState
+                                state.password.isNotBlank() && ((state.password.length >= 8) && state.email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(
+                                    state.email
                                 ).matches())
                             }
 
@@ -189,20 +187,20 @@ fun TextInPutSection(
                         Spacer(modifier = Modifier.height(8.dp))
 
                         InputTextField(
-                            textValue = emailFieldState,
+                            textValue = state.email,
                             labelText = "Email",
-                            onValueChange = { emailFieldState = it },
+                            onValueChange = { viewModel.onEvent(LoginEvent.EnteredEmail(it)) },
 
                             )
 
 
                         PasswordTextField(
-                            textValue = passwordState,
+                            textValue = state.password,
                             labelText = "Password",
                             placeHolder = "Your Password",
 
                             onValueChange = {
-                                passwordState = it
+                                viewModel.onEvent(LoginEvent.EnteredPassword(it))
                             },
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
@@ -240,12 +238,9 @@ fun TextInPutSection(
                             modifier = Modifier,
                             buttonEnabled =
                             {
-                                passwordState.isNotBlank() &&
-                                        ((passwordState.length >= 8)
-                                                && emailFieldState.isNotBlank()
-                                                && Patterns.EMAIL_ADDRESS.matcher(
-                                            emailFieldState
-                                        ).matches())
+                                state.password.isNotBlank() && ((state.password.length >= 8) && state.email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(
+                                    state.email
+                                ).matches())
                             }
 
                         )
