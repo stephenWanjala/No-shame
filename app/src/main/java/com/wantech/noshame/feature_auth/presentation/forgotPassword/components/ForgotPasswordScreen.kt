@@ -28,17 +28,15 @@ fun ForgotPasswordScreen(navController: NavController) {
     val snackbarHostState = remember {
         SnackbarHostState()
     }
-    val keyBoardController = LocalContentColor.current
-
     Scaffold(
 //        scaffoldState = scaffoldState,
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
 
-        ) {
+        ) {paddingValue->
 
         Box(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(paddingValue),
             contentAlignment = Alignment.Center
         ) {
             IConWithText(
@@ -115,7 +113,7 @@ fun ForgotPasswordScreen(navController: NavController) {
                     )
                 }
             }
-            val paddingValues = it.calculateTopPadding()
+
         }
 
     }

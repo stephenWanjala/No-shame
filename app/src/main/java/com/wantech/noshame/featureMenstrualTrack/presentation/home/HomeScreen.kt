@@ -1,5 +1,6 @@
 package com.wantech.noshame.featureMenstrualTrack.presentation.home
 
+import android.content.pm.ActivityInfo
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -15,14 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.*
 import com.wantech.noshame.featureMenstrualTrack.presentation.util.FertilityStatus
+import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
-fun HomeScreen(
-
-) {
+fun HomeScreen() {
+    LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
     Surface(
         modifier = Modifier.fillMaxSize(),
