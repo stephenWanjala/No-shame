@@ -98,7 +98,7 @@ fun SelectDate(
                     headerBackgroundColor = MaterialTheme.colorScheme.secondary,
                     headerTextColor = MaterialTheme.colorScheme.onSecondary,
 
-                )
+                    )
             ) {
                 selectedDate = it
                 checkSelectedDateState(selectedDate)

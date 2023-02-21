@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.HomeScreen
 import com.wantech.noshame.feature_auth.presentation.forgotPassword.components.ForgotPasswordScreen
 import com.wantech.noshame.feature_auth.presentation.login.LoginScreen
-import com.wantech.noshame.feature_auth.presentation.signUp.components.MoreInformationScreen
+import com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo.MoreInformationScreen
 import com.wantech.noshame.feature_auth.presentation.signUp.SigUpScreen
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 
