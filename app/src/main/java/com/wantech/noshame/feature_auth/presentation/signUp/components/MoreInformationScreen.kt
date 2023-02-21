@@ -1,5 +1,6 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components
 
+import android.content.pm.ActivityInfo
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -13,13 +14,15 @@ import androidx.navigation.NavHostController
 import com.wantech.noshame.feature_auth.presentation.components.NoShameSpinner
 import com.wantech.noshame.feature_auth.presentation.components.SpinnerData
 import com.wantech.noshame.feature_auth.presentation.login.ATextButton
+import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoreInformationScreen(navController: NavHostController) {
-    Scaffold {
-        val unUsedPadding = it.calculateTopPadding()
+    LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+    Scaffold { paddingValues ->
+
 
         var dateNotNull by remember {
             mutableStateOf(false)
@@ -31,8 +34,8 @@ fun MoreInformationScreen(navController: NavHostController) {
             mutableStateOf(false)
         }
         Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize().padding(paddingValues),
+                    horizontalAlignment = Alignment . CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Card(
@@ -55,6 +58,10 @@ fun MoreInformationScreen(navController: NavHostController) {
                 NoShameSpinner(
                     list = listOf(
                         SpinnerData(21, "21 days"),
+                        SpinnerData(22, "22 days"),
+                        SpinnerData(23, "23 days"),
+                        SpinnerData(24, "24 days"),
+                        SpinnerData(25, "25 days"),
                         SpinnerData(28, "28 days"),
                         SpinnerData(30, "30 days"),
                     ),
