@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.wantech.noshame.feature_auth.presentation.login.AButton
@@ -33,10 +34,12 @@ fun ForgotPasswordScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
 
-        ) {paddingValue->
+        ) { paddingValue ->
 
         Box(
-            modifier = Modifier.fillMaxSize().padding(paddingValue),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValue),
             contentAlignment = Alignment.Center
         ) {
             IConWithText(
@@ -74,7 +77,8 @@ fun ForgotPasswordScreen(navController: NavController) {
                         modifier = Modifier
                             .align(CenterHorizontally)
                             .fillMaxWidth()
-                            .padding(start = 16.dp, end = 16.dp)
+                            .padding(start = 16.dp, end = 16.dp),
+                        textAlign = TextAlign.Center
                     )
                     InputTextField(
                         textValue = emailState,
