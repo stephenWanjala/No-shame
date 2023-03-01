@@ -49,16 +49,14 @@ fun MoreInformationScreen(
                 ) {
                 SelectDate(
                     modifier = Modifier.padding(top = 8.dp),
-                    onCLicKSelectDate = {
-
-                    },
                     checkSelectedDateState = { date ->
                         dateNotNull = date != null
                         if (dateNotNull) {
                             viewModel.onEvent(MoreInfoEvent.PreviousCycleDate(date!!))
                         }
                         dateNotNull
-                    }
+                    },
+                    viewModel = viewModel
                 )
                 NoShameSpinner(
                     list = listOf(
@@ -70,7 +68,9 @@ fun MoreInformationScreen(
                         SpinnerData(28, "28 days"),
                         SpinnerData(30, "30 days"),
                     ),
-                    preselected = SpinnerData(0, "Length of your cycle"),
+                    preselected = SpinnerData(state.value.cycleLength,
+                        if(state.value.cycleLength==0) "Length of your cycle"  else "${state.value.cycleLength} days"
+                    ),
                     onSelectionChanged = {
 //                        periodLengthEnable = true
                         viewModel.onEvent(MoreInfoEvent.CycleLength(it.id))
@@ -84,7 +84,8 @@ fun MoreInformationScreen(
                         SpinnerData(6, "6 days"),
                         SpinnerData(7, "7 days"),
                     ),
-                    preselected = SpinnerData(0, "period length"),
+                    preselected = SpinnerData(state.value.periodLength,
+                        if(state.value.periodLength==0) "Length of your period"  else "${state.value.periodLength} days"),
                     onSelectionChanged = {
 //                        enableFinishButton = true
                         viewModel.onEvent(MoreInfoEvent.PeriodLength(it.id))

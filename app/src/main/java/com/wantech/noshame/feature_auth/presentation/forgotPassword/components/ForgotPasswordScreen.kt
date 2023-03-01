@@ -26,13 +26,13 @@ fun ForgotPasswordScreen(navController: NavController) {
     }
 //    val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
-    val snackbarHostState = remember {
+    val snackBarHostState = remember {
         SnackbarHostState()
     }
     Scaffold(
 //        scaffoldState = scaffoldState,
         modifier = Modifier.fillMaxSize(),
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
 
         ) { paddingValue ->
 
@@ -96,7 +96,7 @@ fun ForgotPasswordScreen(navController: NavController) {
                         text = "Send",
                         onClick = {
                             scope.launch {
-                                snackbarHostState
+                                snackBarHostState
                                     .showSnackbar(
                                         message = "Sent, check your email",
                                         actionLabel = "Dismiss",

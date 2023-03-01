@@ -46,7 +46,7 @@ fun CustomProgressIndicator(
     LaunchedEffect(key1 = allowedIndicatorValue) {
         animatedIndicatorValue = indicatorValue.toFloat()
     }
-    val percentage by lazy { (animatedIndicatorValue / maxiMumIndicatorValue) * 30 }
+    val percentage by lazy { (animatedIndicatorValue / maxiMumIndicatorValue) * maxiMumIndicatorValue }
 
     val sweepAngle by animateFloatAsState(
         targetValue = (12 * percentage),

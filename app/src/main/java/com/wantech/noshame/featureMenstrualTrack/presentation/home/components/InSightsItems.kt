@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 fun InSightsItems(
     modifier: Modifier,
     insightItems: List<InSightsItemModel>,
-    onInsightItemClick: (InSightsItemModel) -> Unit
+    onInsightItemClick: (item:InSightsItemModel,index:Int) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -22,8 +22,8 @@ fun InSightsItems(
             itemsIndexed(items = insightItems) { index, item ->
                 InSightsItem(
                     modifier = Modifier, inSightsItemModel = item,
-                    onInsightItemClick = {
-                        onInsightItemClick(it)
+                    onInsightItemClick = {insightItem->
+                        onInsightItemClick(insightItem, index)
                     }
 
                 )

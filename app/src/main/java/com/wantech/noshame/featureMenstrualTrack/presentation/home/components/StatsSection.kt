@@ -25,7 +25,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun StatsSection(
-
+    averageCycleLength: Int =30,
+    averageFlow:Int =5,
 ) {
     Column(
         modifier = Modifier
@@ -46,7 +47,8 @@ fun StatsSection(
 
         Row(modifier = Modifier.fillMaxWidth()) {
             CustomProgressIndicator(
-                indicatorValue = 22,
+                indicatorValue = 13,
+                maxiMumIndicatorValue = averageCycleLength,
                 modifier = Modifier,
 
                 )
@@ -58,7 +60,7 @@ fun StatsSection(
                     modifier = Modifier.fillMaxWidth(1f)
                 ) {
                     SubScriptedTex(
-                        normalText = "05", subText = "days",
+                        normalText = "0$averageFlow", subText = "days",
                         subScript = true
                     )
                     Row(
@@ -95,7 +97,7 @@ fun StatsSection(
                     modifier = Modifier.fillMaxWidth(1f)
                 ) {
                     SubScriptedTex(
-                        normalText = "30", subText = "days",
+                        normalText = "$averageCycleLength", subText = "days",
                         subScript = true
                     )
                     Row(

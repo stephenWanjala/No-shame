@@ -20,26 +20,23 @@ import com.vanpra.composematerialdialogs.datetime.date.DatePickerDefaults
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import com.wantech.noshame.R
+import com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo.MoreInfoEvent
+import com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo.MoreInfoViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SelectDate(
-    onCLicKSelectDate: (String) -> Unit,
     modifier: Modifier,
-    checkSelectedDateState: (LocalDate?) -> Boolean
+    checkSelectedDateState: (LocalDate?) -> Boolean,
+    viewModel: MoreInfoViewModel
 
 ) {
     var selectedDate: LocalDate? by remember {
         mutableStateOf(null)
     }
     val formatter = DateTimeFormatter.ofPattern("EE, d MMM yyyy ")
-    val formattedDte by remember {
-        derivedStateOf {
-            selectedDate?.format(formatter)
-        }
-    }
     val datePickerDialogState = rememberMaterialDialogState()
 
     Column(
@@ -49,8 +46,12 @@ fun SelectDate(
 
         ) {
         OutlinedTextField(
-            value = formattedDte ?: "",
-            onValueChange = onCLicKSelectDate,
+            value = viewModel.state.value.previousCycleDate?.format(formatter) ?: "",
+            onValueChange = {dateString->
+                selectedDate = LocalDate.parse(dateString, formatter)
+                viewModel.onEvent(MoreInfoEvent.PreviousCycleDate(LocalDate.parse(dateString, formatter)))
+                checkSelectedDateState(selectedDate)
+            },
             trailingIcon = {
                 Icon(
                     imageVector = Icons.Default.CalendarMonth,
@@ -112,5 +113,5 @@ fun SelectDate(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewSelectDate() {
-    SelectDate(onCLicKSelectDate = {}, modifier = Modifier, { true })
+    SelectDate( modifier = Modifier, { true }, MoreInfoViewModel())
 }

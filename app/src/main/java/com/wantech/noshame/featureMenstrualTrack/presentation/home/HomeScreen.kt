@@ -4,10 +4,7 @@ import android.content.pm.ActivityInfo
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CleanHands
-import androidx.compose.material.icons.filled.QueryStats
 import androidx.compose.material.icons.filled.Segment
-import androidx.compose.material.icons.filled.Woman2
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -59,21 +56,11 @@ fun HomeScreen() {
 
                 LazyColumn {
                     item {
-                        InSightsItems(modifier = Modifier, insightItems = listOf(
-                            InSightsItemModel(
-                                itemName = "Hygiene tips",
-                                Icons.Default.CleanHands
-                            ),
-                            InSightsItemModel(
-                                itemName = "Menstrual myths",
-                                Icons.Default.Woman2
-                            ),
-                            InSightsItemModel(itemName = "FAQs", Icons.Default.QueryStats),
+                        InSightsItems(modifier = Modifier,
+                            insightItems = InSightsItemModel.InsightItems,
+                            onInsightItemClick = { inSightsItemModel, index ->
 
-
-                            ), onInsightItemClick = {
-
-                        })
+                            })
                     }
 
                     item {
