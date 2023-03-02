@@ -11,4 +11,5 @@
     <string name="login_Account">Login Account</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="dont_Have_account">Don\'t Have an Account?</string>
+    <string name="week_mode">week mode</string>
 </resources>

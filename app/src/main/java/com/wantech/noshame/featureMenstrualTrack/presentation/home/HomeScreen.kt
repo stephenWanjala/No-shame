@@ -5,13 +5,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Segment
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.wantech.noshame.R
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.*
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.calendeTrack.PreviousCycleFlow
 import com.wantech.noshame.featureMenstrualTrack.presentation.util.FertilityStatus
 import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
 import java.time.LocalDate
@@ -26,9 +31,11 @@ fun HomeScreen() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.surface
     ) {
+        val selections: SnapshotStateList<LocalDate> = remember { mutableStateListOf<LocalDate>() }
         val selectedDates: MutableList<LocalDate> = mutableListOf()
-        (1..5).forEach { num ->
+        (4..10).forEach { num ->
             selectedDates.add(LocalDate.now().minusDays(num.toLong()))
+            selections.add(LocalDate.now().minusDays(num.toLong()))
         }
 
 
@@ -40,7 +47,8 @@ fun HomeScreen() {
             topBar = {
 
                 HomeTopBar(
-                    tittle = "No shame", navIcon = Icons.Default.Segment,
+                    tittle = stringResource(id = R.string.app_name),
+                    navIcon = Icons.Default.Segment,
                 ) {
 
                 }
@@ -70,7 +78,19 @@ fun HomeScreen() {
                         )
                     }
 
+                    item {
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "Previous Cycle", modifier = Modifier.padding(16.dp),
+                            style = MaterialTheme.typography.headlineSmall,
+                            textAlign = TextAlign.Center
+                        )
+
+                        PreviousCycleFlow(selections = selections)
+
+                    }
                 }
+
 
             }
         }
