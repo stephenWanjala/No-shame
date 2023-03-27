@@ -14,17 +14,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.wantech.noshame.R
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.*
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.calendeTrack.PreviousCycleFlow
 import com.wantech.noshame.featureMenstrualTrack.presentation.util.FertilityStatus
 import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
+import com.wantech.noshame.feature_auth.presentation.util.Screen
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navHostController: NavHostController) {
     LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
     Surface(
@@ -33,10 +35,10 @@ fun HomeScreen() {
     ) {
         val selections: SnapshotStateList<LocalDate> = remember { mutableStateListOf<LocalDate>() }
         val selectedDates: MutableList<LocalDate> = mutableListOf()
-        (4..10).forEach { num ->
+        (6..10).forEach { num ->
             selectedDates.add(LocalDate.now().minusDays(num.toLong()))
-            selections.add(LocalDate.now().minusDays(num.toLong()))
         }
+        selections.addAll(selectedDates.asReversed())
 
 
 
@@ -53,11 +55,13 @@ fun HomeScreen() {
 
                 }
             }
-        ) {
+        ) { paddingValues ->
 
-            it.calculateBottomPadding()
+
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(paddingValues),
 
                 ) {
                 StatsSection()
@@ -67,7 +71,11 @@ fun HomeScreen() {
                         InSightsItems(modifier = Modifier,
                             insightItems = InSightsItemModel.InsightItems,
                             onInsightItemClick = { inSightsItemModel, index ->
-
+                                when (inSightsItemModel.itemName) {
+                                    Screen.FAQScreen.route -> {
+                                        navHostController.navigate(Screen.FAQScreen.route)
+                                    }
+                                }
                             })
                     }
 

@@ -102,28 +102,8 @@ fun CalenderAnimateVisibility(adjacentMonths: Long = 500) {
             )
         }
         Spacer(modifier = Modifier.weight(1f))
-        /* WeekModeToggle(
-             modifier = Modifier.align(Alignment.CenterHorizontally),
-             isWeekMode = isWeekMode,
-         ) { weekMode ->
-             isAnimating = true
-             isWeekMode = weekMode
-             coroutineScope.launch {
-                 if (weekMode) {
-                     val targetDate = monthState.firstVisibleMonth.weekDays.last().last().date
-                     weekState.scrollToWeek(targetDate)
-                     weekState.animateScrollToWeek(targetDate) // Trigger a layout pass for title update
-                 } else {
-                     val targetMonth = weekState.firstVisibleWeek.days.first().date.yearMonth
-                     monthState.scrollToMonth(targetMonth)
-                     monthState.animateScrollToMonth(targetMonth) // Trigger a layout pass for title update
-                 }
-                 isAnimating = false
-             }
-         }*/
         LaunchedEffect(key1 = isWeekMode) {
             isAnimating = true
-//            isWeekMode = !isWeekMode
             coroutineScope.launch {
                 if (isWeekMode) {
                     val targetDate = monthState.firstVisibleMonth.weekDays.last().last().date
@@ -161,7 +141,7 @@ private fun CalendarTitle(
         isWeekMode = isWeekMode,
         currentMonth = currentMonth,
         monthState = monthState,
-        weekState = weekState,
+        weekState = weekState
     )
 }
 

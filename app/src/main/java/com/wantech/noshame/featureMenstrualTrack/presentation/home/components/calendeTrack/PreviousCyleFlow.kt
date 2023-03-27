@@ -50,17 +50,16 @@ fun PreviousCycleFlow(
     adjacentMonths: Long = 500,
     selections: SnapshotStateList<LocalDate>,
 ) {
-    val currentDate = remember { selections.last() }
+    val currentDate = remember { selections.first()}
 //    val currentMonth = remember(currentDate) { currentDate.yearMonth }
     val currentMonth =
-        remember(selections.last()) { selections.last().yearMonth }
-    val startMonth = remember(selections.last()) { currentMonth.minusMonths(adjacentMonths) }
+        remember(selections.first()) { selections.first().yearMonth }
+    val startMonth = remember(selections.first()) { currentMonth.minusMonths(adjacentMonths) }
     val endMonth = remember(currentDate) { currentMonth.plusMonths(adjacentMonths) }
-//    val selections: SnapshotStateList<LocalDate> = remember { mutableStateListOf<LocalDate>() }
     val daysOfWeek = remember { daysOfWeek() }
 
     var isWeekMode by remember { mutableStateOf(true) }
-//    val coroutineScope = rememberCoroutineScope()
+
 
     Column(
         modifier = modifier
@@ -84,6 +83,7 @@ fun PreviousCycleFlow(
             isWeekMode = isWeekMode,
             monthState = monthState,
             weekState = weekState,
+            onTittleClick = {isWeekMode=!isWeekMode}
         )
         CalendarHeader(daysOfWeek = daysOfWeek)
         val monthCalendarAlpha by animateFloatAsState(if (isWeekMode) 0f else 1f)
@@ -114,11 +114,6 @@ fun PreviousCycleFlow(
                         isSelected = isSelectable && selections.contains(day.date),
                         isSelectable = isSelectable,
                     ) {
-//                        if (selections.contains(clicked)) {
-//                            selections.remove(clicked)
-//                        } else {
-//                            selections.add(clicked)
-//                        }
                         isWeekMode = !isWeekMode
                     }
                 },
@@ -142,11 +137,6 @@ fun PreviousCycleFlow(
                         isSelected = isSelectable && selections.contains(day.date),
                         isSelectable = isSelectable,
                     ) {
-//                        if (selections.contains(clicked)) {
-//                            selections.remove(clicked)
-//                        } else {
-//                            selections.add(clicked)
-//                        }
                         isWeekMode = !isWeekMode
                     }
 
@@ -168,23 +158,6 @@ fun PreviousCycleFlow(
         }
         Spacer(modifier = Modifier.weight(1f))
 
-        /*WeekModeToggle(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            isWeekMode = isWeekMode,
-        ) { weekMode ->
-            coroutineScope.launch {
-                if (weekMode) {
-                    val targetDate = monthState.firstVisibleMonth.weekDays.last().last().date
-                    weekState.scrollToWeek(targetDate)
-                    weekState.animateScrollToWeek(targetDate) // Trigger a layout pass for title update
-                } else {
-                    val targetMonth = weekState.firstVisibleWeek.days.first().date.yearMonth
-                    monthState.scrollToMonth(targetMonth)
-                    monthState.animateScrollToMonth(targetMonth) // Trigger a layout pass for title update
-                }
-                isWeekMode = weekMode
-            }
-        }*/
     }
 }
 
@@ -193,6 +166,7 @@ private fun CalendarTitle(
     isWeekMode: Boolean,
     monthState: CalendarState,
     weekState: WeekCalendarState,
+    onTittleClick: () -> Unit,
 ) {
     val visibleMonth = rememberFirstVisibleMonthAfterScroll(monthState)
     val visibleWeek = rememberFirstVisibleWeekAfterScroll(weekState)
@@ -201,6 +175,7 @@ private fun CalendarTitle(
         currentMonth = if (isWeekMode) visibleWeek.days.first().date.yearMonth else visibleMonth.yearMonth,
         monthState = monthState,
         weekState = weekState,
+        tittleClick = onTittleClick
     )
 }
 
@@ -211,6 +186,7 @@ object PageSharedComponents {
         currentMonth: YearMonth,
         monthState: CalendarState,
         weekState: WeekCalendarState,
+        tittleClick: (() -> Unit)? =null
     ) {
         val coroutineScope = rememberCoroutineScope()
         SimpleCalendarTitle(
@@ -238,6 +214,7 @@ object PageSharedComponents {
                     }
                 }
             },
+            onClick = { tittleClick?.invoke() }
         )
     }
 
@@ -293,31 +270,5 @@ object PageSharedComponents {
     }
 }
 
-/*
-@Composable
-fun WeekModeToggle(
-    modifier: Modifier,
-    isWeekMode: Boolean,
-    weekModeToggled: (isWeekMode: Boolean) -> Unit,
-) {
-    // We want the entire content to be clickable, not just the checkbox.
-    Row(
-        modifier = modifier
-            .padding(10.dp)
-            .clip(MaterialTheme.shapes.small)
-            .clickable { weekModeToggled(!isWeekMode) }
-            .padding(10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterHorizontally),
-    ) {
-        Checkbox(
-            checked = isWeekMode,
-            onCheckedChange = null, // Check is handled by parent.
-            colors = CheckboxDefaults.colors(checkedColor = colorResource(R.color.example_1_selection_color)),
-        )
-        Text(text = stringResource(R.string.week_mode))
-    }
-}
-}
-*/
+
 

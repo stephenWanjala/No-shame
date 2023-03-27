@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.wantech.noshame.R
 import com.wantech.noshame.feature_auth.presentation.login.AButton
+import com.wantech.noshame.feature_auth.presentation.login.ATextButton
 import com.wantech.noshame.feature_auth.presentation.login.LogInViewModel
 import com.wantech.noshame.feature_auth.presentation.login.LoginEvent
 
@@ -124,7 +125,7 @@ fun TextInPutSection(
                             )
                         }
 
-                        AButton(text = stringResource(id = R.string.sign_in),
+                        ATextButton(text = stringResource(id = R.string.sign_in),
                             onClick = {
                                 onClickLoginButton()
 

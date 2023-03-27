@@ -4,11 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.wantech.noshame.fAQs.presentation.FAQSScreen
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.HomeScreen
 import com.wantech.noshame.feature_auth.presentation.forgotPassword.components.ForgotPasswordScreen
 import com.wantech.noshame.feature_auth.presentation.login.LoginScreen
-import com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo.MoreInformationScreen
 import com.wantech.noshame.feature_auth.presentation.signUp.SigUpScreen
+import com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo.MoreInformationScreen
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 
 @Composable
@@ -30,13 +31,17 @@ fun NavigationHost(
         }
 
         composable(route = Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(navHostController = navController)
         }
         composable(route = Screen.ForgotPassword.route) {
             ForgotPasswordScreen(navController = navController)
         }
         composable(route = Screen.MoreInfoScreen.route) {
             MoreInformationScreen(navController = navController)
+        }
+
+        composable(route = Screen.FAQScreen.route) {
+            FAQSScreen(navController = navController)
         }
     }
 }

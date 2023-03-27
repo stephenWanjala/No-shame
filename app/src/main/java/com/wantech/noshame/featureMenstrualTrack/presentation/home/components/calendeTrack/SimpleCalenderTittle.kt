@@ -28,6 +28,7 @@ fun SimpleCalendarTitle(
     currentMonth: YearMonth,
     goToPrevious: () -> Unit,
     goToNext: () -> Unit,
+    onClick: () -> Unit
 ) {
     Row(
         modifier = modifier.height(40.dp),
@@ -41,7 +42,8 @@ fun SimpleCalendarTitle(
         Text(
             modifier = Modifier
                 .weight(1f)
-                .testTag("MonthTitle"),
+                .testTag("MonthTitle")
+                .clickable { onClick() },
             text = currentMonth.displayText(),
             fontSize = 22.sp,
             textAlign = TextAlign.Center,
