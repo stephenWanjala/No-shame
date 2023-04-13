@@ -41,7 +41,7 @@ fun NavigationHost(
         }
 
         composable(route = Screen.FAQScreen.route) {
-            FAQSScreen(navController = navController)
+            FAQSScreen()
         }
     }
 }
