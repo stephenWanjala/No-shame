@@ -1,9 +1,11 @@
 package com.wantech.noshame.feature_auth.presentation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
 import com.wantech.noshame.fAQs.presentation.FAQSScreen
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.HomeScreen
 import com.wantech.noshame.feature_auth.presentation.forgotPassword.components.ForgotPasswordScreen
@@ -18,20 +20,42 @@ fun NavigationHost(
 
     ) {
 
+
     NavHost(
         navController = navController,
-        startDestination = Screen.SignIn.route,
+        startDestination = "auth_nav",
 
         ) {
+
+        authNav(navController = navController)
+
+        homeGraph(navController = navController)
+
+
+    }
+
+}
+
+private fun NavGraphBuilder.homeGraph(navController: NavHostController) {
+    navigation(startDestination = Screen.Home.route, route = "home_nav") {
+
+        composable(route = Screen.Home.route) {
+            HomeScreen(navHostController = navController)
+        }
+        composable(route = Screen.FAQScreen.route) {
+            FAQSScreen()
+        }
+    }
+}
+
+
+private fun NavGraphBuilder.authNav(navController: NavHostController) {
+    navigation(startDestination = Screen.SignIn.route, route = "auth_nav") {
         composable(route = Screen.SignIn.route) {
             LoginScreen(navController)
         }
         composable(route = Screen.SignUp.route) {
             SigUpScreen(navController = navController)
-        }
-
-        composable(route = Screen.Home.route) {
-            HomeScreen(navHostController = navController)
         }
         composable(route = Screen.ForgotPassword.route) {
             ForgotPasswordScreen(navController = navController)
@@ -40,8 +64,5 @@ fun NavigationHost(
             MoreInformationScreen(navController = navController)
         }
 
-        composable(route = Screen.FAQScreen.route) {
-            FAQSScreen()
-        }
     }
 }

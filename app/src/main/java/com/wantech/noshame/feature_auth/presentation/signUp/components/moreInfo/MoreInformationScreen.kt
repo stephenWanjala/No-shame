@@ -68,8 +68,9 @@ fun MoreInformationScreen(
                         SpinnerData(28, "28 days"),
                         SpinnerData(30, "30 days"),
                     ),
-                    preselected = SpinnerData(state.value.cycleLength,
-                        if(state.value.cycleLength==0) "Length of your cycle"  else "${state.value.cycleLength} days"
+                    preselected = SpinnerData(
+                        state.value.cycleLength,
+                        if (state.value.cycleLength == 0) "Length of your cycle" else "${state.value.cycleLength} days"
                     ),
                     onSelectionChanged = {
 //                        periodLengthEnable = true
@@ -84,8 +85,10 @@ fun MoreInformationScreen(
                         SpinnerData(6, "6 days"),
                         SpinnerData(7, "7 days"),
                     ),
-                    preselected = SpinnerData(state.value.periodLength,
-                        if(state.value.periodLength==0) "Length of your period"  else "${state.value.periodLength} days"),
+                    preselected = SpinnerData(
+                        state.value.periodLength,
+                        if (state.value.periodLength == 0) "Length of your period" else "${state.value.periodLength} days"
+                    ),
                     onSelectionChanged = {
 //                        enableFinishButton = true
                         viewModel.onEvent(MoreInfoEvent.PeriodLength(it.id))
@@ -98,7 +101,7 @@ fun MoreInformationScreen(
                 ATextButton(
                     text = "Finish",
                     onClick = {
-                        navController.navigate(Screen.Home.route) {
+                        navController.navigate("home_nav") {
                             popUpTo(Screen.Home.route) {
                                 inclusive = true
                             }

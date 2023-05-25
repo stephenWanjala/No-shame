@@ -1,7 +1,12 @@
 package com.wantech.noshame.feature_auth.presentation.login
 
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
@@ -43,7 +48,13 @@ fun LoginScreen(navController: NavController) {
 
                 TextInPutSection(
                     buttonLabel = stringResource(id = R.string.sign_in),
-                    onClickLoginButton = { navController.navigate(Screen.Home.route) },
+                    onClickLoginButton = {
+                        navController.navigate("home_nav") {
+                            popUpTo(route = "auth_nav") {
+                                inclusive = true
+                            }
+                        }
+                    },
                     onClickToSignUp = {
                         navController.navigate(Screen.SignUp.route) {
                             popUpTo(Screen.SignUp.route) {
