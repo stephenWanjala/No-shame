@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.wantech.noshame.explore.presentation.components.ExploreScreenUi
 import com.wantech.noshame.fAQs.presentation.FAQSScreen
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.HomeScreen
 import com.wantech.noshame.feature_auth.presentation.forgotPassword.components.ForgotPasswordScreen
@@ -28,6 +29,8 @@ fun NavigationHost(
         authNav(navController = navController)
 
         homeGraph(navController = navController)
+
+        exploreNav()
 
 
     }
@@ -62,5 +65,13 @@ private fun NavGraphBuilder.authNav(navController: NavHostController) {
             MoreInformationScreen(navController = navController)
         }
 
+    }
+}
+
+private fun NavGraphBuilder.exploreNav() {
+    navigation(startDestination = Screen.ExploreScreen.route, route = "explore_nav") {
+        composable(route = Screen.ExploreScreen.route) {
+            ExploreScreenUi()
+        }
     }
 }

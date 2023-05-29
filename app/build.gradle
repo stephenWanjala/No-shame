@@ -123,6 +123,9 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.44.2"
 
     implementation("me.nikhilchaudhari:composeNeumorphism:1.0.0-alpha02")
+
+    //systemUi controller
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
 }
 
 kapt {
