@@ -96,7 +96,7 @@ fun NoShameTheme(
     val systemUiController = rememberSystemUiController()
     DisposableEffect(systemUiController, darkTheme) {
         systemUiController.setSystemBarsColor(
-            color = colorScheme.surface,
+            color = colorScheme.background,
             darkIcons = !darkTheme
         )
 
