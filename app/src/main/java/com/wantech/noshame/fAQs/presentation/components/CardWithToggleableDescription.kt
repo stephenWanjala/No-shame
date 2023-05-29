@@ -53,7 +53,7 @@ fun CardWithToggleableDescription(
                 Text(
                     text = title,
                     fontWeight = FontWeight.Bold,
-                    style= MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.weight(1f)
                 )
                 IconButton(

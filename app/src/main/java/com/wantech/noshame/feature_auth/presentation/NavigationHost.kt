@@ -17,9 +17,7 @@ import com.wantech.noshame.feature_auth.presentation.util.Screen
 @Composable
 fun NavigationHost(
     navController: NavHostController,
-
-    ) {
-
+) {
 
     NavHost(
         navController = navController,

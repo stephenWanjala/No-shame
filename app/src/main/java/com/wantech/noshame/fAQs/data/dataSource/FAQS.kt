@@ -2,7 +2,10 @@ package com.wantech.noshame.fAQs.data.dataSource
 
 object FAQS {
     val faqs = listOf(
-        FAQ(question = "Your menstrual cycle", answer = "A menstrual cycle begins with the first day of your period, or menstruation [MEN-stroo-AY-shuhn] and starts over again when the next period begins. Throughout a monthly menstrual cycle, your body makes different amounts of chemicals called hormones to prepare for pregnancy. These changing hormone levels can cause menstrual symptoms. Menstrual cycles often change as a woman gets older. A normal cycle lasts between 24 and 38 days."),
+        FAQ(
+            question = "Your menstrual cycle",
+            answer = "A menstrual cycle begins with the first day of your period, or menstruation [MEN-stroo-AY-shuhn] and starts over again when the next period begins. Throughout a monthly menstrual cycle, your body makes different amounts of chemicals called hormones to prepare for pregnancy. These changing hormone levels can cause menstrual symptoms. Menstrual cycles often change as a woman gets older. A normal cycle lasts between 24 and 38 days."
+        ),
         FAQ(
             "What is menstruation? ",
             answer = "Menstruation is a woman’s monthly bleeding, often called your “period.” When you menstruate, your body discards the monthly buildup of the lining of your uterus (womb). Menstrual blood and tissue flow from your uterus through the small opening in your cervix and pass out of your body through your vagina.\n" +
@@ -101,44 +104,47 @@ object FAQS {
                     "    Bleeding that often lasts longer than eight days\n" +
                     "\n"
         ),
-        FAQ(question = "How often should I change my pad, tampon, menstrual cup, sponge, or period panties? ", answer = "Follow the instructions that came with your period product. Try to change or rinse your feminine hygiene product before it becomes soaked through or full.\n" +
-                "\n" +
-                "    Most women change their pads every few hours.\n" +
-                "    A tampon should not be worn for more than 8 hours because of the risk of toxic shock syndrome (TSS)\n" +
-                "    Menstrual cups and sponges may only need to be rinsed once or twice a day.\n" +
-                "    Period panties (underwear with washable menstrual pads sewn in) can usually last about a day, depending on the style and your flow.\n" +
-                "\n" +
-                "Use a product appropriate in size and absorbency for your menstrual bleeding. The amount of menstrual blood usually changes during a period. Some women use different products on different days of their period, depending on how heavy or light the bleeding is.  \n"),
-        FAQ(question = "What is toxic shock syndrome?", answer = "Toxic shock syndrome (TSS) is a rare but sometimes deadly condition caused by bacteria that make toxins or poisons. In 1980, 63 women died from TSS. A certain brand of super absorbency tampons was said to be the cause. These tampons were taken off the market.\n" +
-                "\n" +
-                "Today, most cases of TSS are not caused by using tampons. But, you could be at risk for TSS if you use more absorbent tampons than you need for your bleeding or if you do not change your tampon often enough (at least every four to eight hours). Menstrual cups, cervical caps, sponges, or diaphragms (anything inserted into your vagina) may also increase your risk for TSS if they are left in place for too long (usually 24 hours). Remove sponges within 30 hours and cervical caps within 48 hours.9\n" +
-                "\n" +
-                "If you have any symptoms of TSS, take out the tampon, menstrual cup, sponge, or diaphragm, and call 911 or go to the hospital right away.\n" +
-                "\n" +
-                "Symptoms of TSS include:10\n" +
-                "\n" +
-                "    Sudden high fever\n" +
-                "    Muscle aches\n" +
-                "    Vomiting\n" +
-                "    Nausea\n" +
-                "    Diarrhea\n" +
-                "    Rash\n" +
-                "    Kidney or other organ failure\n" +
-                "\n"),
-        FAQ(question = "How does the menstrual cycle affect other health problems?", answer = "The changing hormone levels throughout the menstrual cycle can also affect other health problems:\n" +
-                "\n" +
-                "    Depression and anxiety disorders. These conditions often overlap with premenstrual syndrome (PMS). Depression and anxiety symptoms are similar to PMS and may get worse before or during your period.\n" +
-                "    Asthma. Your asthma symptoms may be worse during some parts of your cycle.11\n" +
-                "    Irritable bowel syndrome (IBS). IBS causes cramping, bloating, and gas. Your IBS symptoms may get worse right before your period.\n" +
-                "    Bladder pain syndrome. Women with bladder pain syndrome are more likely to have painful cramps during PMS.\n"),
-        FAQ(question = "Did we answer your question about the menstrual cycle?\n" +
-                "\n", answer = "For more information about the menstrual cycle, call the OWH Helpline at 1-800-994-9662 or check out the following resources from other organizations:\n" +
-                "\n" +
-                "    Abnormal Uterine Bleeding – Information from the American College of Obstetricians and Gynecologists.\n" +
-                "    Menstruation and Menstrual Problems – Information from the Eunice Kennedy Shriver National Institute of Child Health and Human Development\n" +
-                "    Toxic Shock Syndrome  – Information from the Mayo Clinic\n" +
-                "\n")
-    )
+        FAQ(
+            question = "How often should I change my pad, tampon, menstrual cup, sponge, or period panties? ",
+            answer = "Follow the instructions that came with your period product. Try to change or rinse your feminine hygiene product before it becomes soaked through or full.\n" +
+                    "\n" +
+                    "    Most women change their pads every few hours.\n" +
+                    "    A tampon should not be worn for more than 8 hours because of the risk of toxic shock syndrome (TSS)\n" +
+                    "    Menstrual cups and sponges may only need to be rinsed once or twice a day.\n" +
+                    "    Period panties (underwear with washable menstrual pads sewn in) can usually last about a day, depending on the style and your flow.\n" +
+                    "\n" +
+                    "Use a product appropriate in size and absorbency for your menstrual bleeding. The amount of menstrual blood usually changes during a period. Some women use different products on different days of their period, depending on how heavy or light the bleeding is.  \n"
+        ),
+        FAQ(
+            question = "What is toxic shock syndrome?",
+            answer = "Toxic shock syndrome (TSS) is a rare but sometimes deadly condition caused by bacteria that make toxins or poisons. In 1980, 63 women died from TSS. A certain brand of super absorbency tampons was said to be the cause. These tampons were taken off the market.\n" +
+                    "\n" +
+                    "Today, most cases of TSS are not caused by using tampons. But, you could be at risk for TSS if you use more absorbent tampons than you need for your bleeding or if you do not change your tampon often enough (at least every four to eight hours). Menstrual cups, cervical caps, sponges, or diaphragms (anything inserted into your vagina) may also increase your risk for TSS if they are left in place for too long (usually 24 hours). Remove sponges within 30 hours and cervical caps within 48 hours.9\n" +
+                    "\n" +
+                    "If you have any symptoms of TSS, take out the tampon, menstrual cup, sponge, or diaphragm, and call 911 or go to the hospital right away.\n" +
+                    "\n" +
+                    "Symptoms of TSS include:10\n" +
+                    "\n" +
+                    "    Sudden high fever\n" +
+                    "    Muscle aches\n" +
+                    "    Vomiting\n" +
+                    "    Nausea\n" +
+                    "    Diarrhea\n" +
+                    "    Rash\n" +
+                    "    Kidney or other organ failure\n" +
+                    "\n"
+        ),
+        FAQ(
+            question = "How does the menstrual cycle affect other health problems?",
+            answer = "The changing hormone levels throughout the menstrual cycle can also affect other health problems:\n" +
+                    "\n" +
+                    "    Depression and anxiety disorders. These conditions often overlap with premenstrual syndrome (PMS). Depression and anxiety symptoms are similar to PMS and may get worse before or during your period.\n" +
+                    "    Asthma. Your asthma symptoms may be worse during some parts of your cycle.11\n" +
+                    "    Irritable bowel syndrome (IBS). IBS causes cramping, bloating, and gas. Your IBS symptoms may get worse right before your period.\n" +
+                    "    Bladder pain syndrome. Women with bladder pain syndrome are more likely to have painful cramps during PMS.\n"
+        ),
+
+        )
 
 }
 
