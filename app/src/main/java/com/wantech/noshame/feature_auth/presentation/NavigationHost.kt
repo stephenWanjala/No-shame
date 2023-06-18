@@ -14,6 +14,7 @@ import com.wantech.noshame.feature_auth.presentation.login.LoginScreen
 import com.wantech.noshame.feature_auth.presentation.signUp.SigUpScreen
 import com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo.MoreInformationScreen
 import com.wantech.noshame.feature_auth.presentation.util.Screen
+import com.wantech.noshame.myths.presentation.MenstrualMythsScreen
 
 @Composable
 fun NavigationHost(
@@ -22,7 +23,7 @@ fun NavigationHost(
 
     NavHost(
         navController = navController,
-        startDestination = "auth_nav",
+        startDestination = "home_nav",
 
         ) {
 
@@ -45,6 +46,9 @@ private fun NavGraphBuilder.homeGraph(navController: NavHostController) {
         }
         composable(route = Screen.FAQScreen.route) {
             FAQSScreen()
+        }
+        composable(route = Screen.MythsScreen.route) {
+            MenstrualMythsScreen()
         }
     }
 }

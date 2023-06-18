@@ -15,4 +15,5 @@ sealed class Screen(val route: String) {
     object TermsAndConditionsScreen : Screen(route = "terms_and_conditions")
     object HygieneTipsScreen : Screen(route = "hygiene_tips")
     object ExploreScreen : Screen(route = "explore")
+    object MythsScreen : Screen(route = "Menstrual myths")
 }
