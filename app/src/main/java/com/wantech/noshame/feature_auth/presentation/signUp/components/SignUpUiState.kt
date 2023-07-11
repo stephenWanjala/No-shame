@@ -1,7 +1,7 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components
 
-import com.google.firebase.auth.AuthResult
 import com.wantech.noshame.core.util.UiText
+import com.wantech.noshame.feature_auth.domain.repository.AuthResult
 
 data class SignUpUIState(
     val userName: String = "",

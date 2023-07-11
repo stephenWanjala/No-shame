@@ -1,6 +1,5 @@
 package com.wantech.noshame.feature_auth.domain.repository
 
-import com.google.firebase.auth.AuthResult
 import com.wantech.noshame.core.util.Resource
 import kotlinx.coroutines.flow.Flow
 
@@ -22,3 +21,5 @@ interface AuthRepository {
 
     suspend fun getUserId(): Flow<String>
 }
+
+interface  AuthResult

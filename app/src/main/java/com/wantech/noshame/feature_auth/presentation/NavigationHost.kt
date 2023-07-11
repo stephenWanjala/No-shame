@@ -23,7 +23,7 @@ fun NavigationHost(
 
     NavHost(
         navController = navController,
-        startDestination = "home_nav",
+        startDestination = "auth_nav",
 
         ) {
 
