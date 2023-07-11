@@ -4,6 +4,7 @@ sealed class Screen(val route: String) {
     init {
         require(route.isNotBlank()) { "Route must not be blank" }
     }
+
     object Home : Screen("home")
     object SignUp : Screen("sign_up")
     object SignIn : Screen("sign_in")
@@ -13,4 +14,6 @@ sealed class Screen(val route: String) {
     object AboutScreen : Screen(route = "about")
     object TermsAndConditionsScreen : Screen(route = "terms_and_conditions")
     object HygieneTipsScreen : Screen(route = "hygiene_tips")
+    object ExploreScreen : Screen(route = "explore")
+    object MythsScreen : Screen(route = "Menstrual myths")
 }

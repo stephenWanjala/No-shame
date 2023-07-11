@@ -70,10 +70,14 @@ fun HomeScreen(navHostController: NavHostController) {
                     item {
                         InSightsItems(modifier = Modifier,
                             insightItems = InSightsItemModel.InsightItems,
-                            onInsightItemClick = { inSightsItemModel, index ->
+                            onInsightItemClick = { inSightsItemModel, _ ->
                                 when (inSightsItemModel.itemName) {
                                     Screen.FAQScreen.route -> {
                                         navHostController.navigate(Screen.FAQScreen.route)
+                                    }
+
+                                    Screen.MythsScreen.route -> {
+                                        navHostController.navigate(Screen.MythsScreen.route)
                                     }
                                 }
                             })
