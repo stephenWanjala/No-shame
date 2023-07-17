@@ -1,11 +1,17 @@
 package com.wantech.noshame.di
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import com.wantech.noshame.feature_auth.data.network.AuthApi
 import com.wantech.noshame.feature_auth.data.repositoryImpl.AuthRepositoryImpl
+import com.wantech.noshame.feature_auth.data.repositoryImpl.SaveAuthTokenInSharedPref
 import com.wantech.noshame.feature_auth.domain.repository.AuthRepository
+import com.wantech.noshame.feature_auth.domain.repository.SaveAuthToken
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -51,5 +57,15 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(): AuthRepository = AuthRepositoryImpl()
+    fun provideAuthRepository(api: AuthApi): AuthRepository = AuthRepositoryImpl(api = api)
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext app:Application): SharedPreferences
+    = app.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    fun provideSaveAuthToken(sharedPreferences: SharedPreferences): SaveAuthToken =
+        SaveAuthTokenInSharedPref(pref = sharedPreferences)
 }

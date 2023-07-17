@@ -1,7 +1,7 @@
 package com.wantech.noshame.feature_auth.presentation.login
 
 import com.wantech.noshame.core.util.UiText
-import com.wantech.noshame.feature_auth.domain.repository.AuthResult
+import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
 
 data class LoginUiState(
     val email: String = "",
@@ -25,6 +25,6 @@ data class LoginUiState(
 
 data class LoginState(
     val isLoading: Boolean = false,
-    val login: AuthResult? = null,
+    val login: AuthResponse? = null,
     val error: UiText? = null
 )
