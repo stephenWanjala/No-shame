@@ -11,16 +11,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.wantech.noshame.feature_auth.presentation.login.AButton
 import com.wantech.noshame.feature_auth.presentation.login.componets.InputTextField
 import com.wantech.noshame.feature_auth.presentation.signUp.components.IConWithText
-import com.wantech.noshame.feature_auth.presentation.util.Screen
 import kotlinx.coroutines.launch
-
+@Destination
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ForgotPasswordScreen(navController: NavController) {
+fun ForgotPasswordScreen(navigator: DestinationsNavigator) {
     var emailState by remember {
         mutableStateOf("")
     }
@@ -46,11 +46,7 @@ fun ForgotPasswordScreen(navController: NavController) {
                 modifier = Modifier.align(Alignment.TopCenter),
                 text = "Forgot Password",
                 onClick = {
-                    navController.navigate(Screen.SignIn.route) {
-                        popUpTo(Screen.SignIn.route) {
-                            inclusive = true
-                        }
-                    }
+                    navigator.navigateUp()
                 })
 
             Card(

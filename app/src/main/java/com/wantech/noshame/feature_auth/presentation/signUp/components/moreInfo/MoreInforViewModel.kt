@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -26,16 +27,25 @@ class MoreInfoViewModel @Inject constructor() : ViewModel() {
                 if (state.value.cycleLength != 0) _state.value =
                     state.value.copy(periodLengthEnabled = true)
             }
-            MoreInfoEvent.FinishSignUp -> TODO()
+
+            MoreInfoEvent.FinishSignUp -> {
+
+            }
+
             is MoreInfoEvent.PeriodLength -> {
                 _state.value = state.value.copy(periodLength = event.length)
                 if (_state.value.periodLength != 0) _state.value =
                     state.value.copy(isFinishBtnEnabled = true)
             }
+
             is MoreInfoEvent.PreviousCycleDate -> {
                 _state.value = state.value.copy(previousCycleDate = event.date)
                 if (_state.value.previousCycleDate != null) _state.value =
                     state.value.copy(cycleLengthEnabled = true)
+            }
+
+            is MoreInfoEvent.AuthDetailsUpdate -> {
+                _uiState.update { it.copy(authDetails = event.authDetails) }
             }
         }
 
