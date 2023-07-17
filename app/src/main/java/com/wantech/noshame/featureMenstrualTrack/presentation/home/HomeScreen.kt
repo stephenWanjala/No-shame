@@ -14,8 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.wantech.noshame.R
+import com.wantech.noshame.destinations.FAQSScreenDestination
+import com.wantech.noshame.destinations.MenstrualMythsScreenDestination
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.*
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.calendeTrack.PreviousCycleFlow
 import com.wantech.noshame.featureMenstrualTrack.presentation.util.FertilityStatus
@@ -24,9 +27,9 @@ import com.wantech.noshame.feature_auth.presentation.util.Screen
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
-
+@Destination
 @Composable
-fun HomeScreen(navHostController: NavHostController) {
+fun HomeScreen(navigator: DestinationsNavigator) {
     LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
     Surface(
@@ -73,11 +76,11 @@ fun HomeScreen(navHostController: NavHostController) {
                             onInsightItemClick = { inSightsItemModel, _ ->
                                 when (inSightsItemModel.itemName) {
                                     Screen.FAQScreen.route -> {
-                                        navHostController.navigate(Screen.FAQScreen.route)
+                                        navigator.navigate(FAQSScreenDestination.route)
                                     }
 
                                     Screen.MythsScreen.route -> {
-                                        navHostController.navigate(Screen.MythsScreen.route)
+                                        navigator.navigate(MenstrualMythsScreenDestination.route)
                                     }
                                 }
                             })

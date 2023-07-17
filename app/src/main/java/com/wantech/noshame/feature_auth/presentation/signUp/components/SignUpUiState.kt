@@ -1,7 +1,10 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components
 
+import android.os.Parcelable
 import com.wantech.noshame.core.util.UiText
 import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
+import kotlinx.parcelize.Parcelize
+import java.time.LocalDate
 
 data class SignUpUIState(
     val userName: String = "",
@@ -12,8 +15,9 @@ data class SignUpUIState(
     val isEmailError: EmailError? = null,
     val isPasswordError: PasswordError? = null,
     val isNextButtonEnabled: Boolean = false,
-    val dayOneOfPreviousPeriod: Int = 0,
-    val periodLength: Int = 0,
+    val dayOneOfPreviousPeriod: LocalDate = LocalDate.now(),
+    val periodLength: Int = 3,
+    val cycleLength: Int = 28,
     val isFinishEnabled: Boolean = false
 
 ) {
@@ -41,3 +45,10 @@ data class SignUpState(
     val signUp: AuthResponse? = null,
     val error: UiText? = null
 )
+
+@Parcelize
+data class AuthDetails(
+    val userName: String,
+    val email: String,
+    val password: String
+) : Parcelable

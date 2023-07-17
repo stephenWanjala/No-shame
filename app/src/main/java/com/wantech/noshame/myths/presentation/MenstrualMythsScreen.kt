@@ -22,10 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
 import com.wantech.noshame.fAQs.presentation.components.CardWithToggleableDescription
 import com.wantech.noshame.myths.data.datasource.MYTHS
 import com.wantech.noshame.myths.domain.model.Myth
-
+@Destination
 @Composable
 fun MenstrualMythsScreen() {
     val myths by rememberSaveable {

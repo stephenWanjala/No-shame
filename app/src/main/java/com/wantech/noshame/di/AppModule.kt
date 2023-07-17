@@ -11,7 +11,6 @@ import com.wantech.noshame.feature_auth.domain.repository.SaveAuthToken
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,8 +21,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-
 
 
     private const val BaseUrl = "http://192.168.1.148:8080/"
@@ -57,12 +54,15 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(api: AuthApi): AuthRepository = AuthRepositoryImpl(api = api)
+    fun provideAuthRepository(
+        api: AuthApi,
+        saveAuthToken: SaveAuthToken
+    ): AuthRepository = AuthRepositoryImpl(api = api, saveToken = saveAuthToken)
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(@ApplicationContext app:Application): SharedPreferences
-    = app.getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
+    fun provideSharedPreferences( app: Application): SharedPreferences =
+        app.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
 
     @Provides
     @Singleton

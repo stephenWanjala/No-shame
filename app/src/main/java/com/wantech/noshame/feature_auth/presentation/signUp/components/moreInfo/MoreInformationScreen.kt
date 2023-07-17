@@ -11,20 +11,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.wantech.noshame.destinations.HomeScreenDestination
+import com.wantech.noshame.destinations.MoreInformationScreenDestination
 import com.wantech.noshame.feature_auth.presentation.components.NoShameSpinner
 import com.wantech.noshame.feature_auth.presentation.components.SpinnerData
 import com.wantech.noshame.feature_auth.presentation.login.ATextButton
+import com.wantech.noshame.feature_auth.presentation.signUp.components.AuthDetails
 import com.wantech.noshame.feature_auth.presentation.signUp.components.SelectDate
 import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
-import com.wantech.noshame.feature_auth.presentation.util.Screen
 
+@Destination
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoreInformationScreen(
-    navController: NavHostController,
-    viewModel: MoreInfoViewModel = hiltViewModel()
+    navigator: DestinationsNavigator,
+    viewModel: MoreInfoViewModel = hiltViewModel(),
+    authDetails: AuthDetails
 ) {
+
     LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     Scaffold { paddingValues ->
 
@@ -32,7 +38,7 @@ fun MoreInformationScreen(
         var dateNotNull by remember {
             mutableStateOf(false)
         }
-
+        viewModel.onEvent(MoreInfoEvent.AuthDetailsUpdate(authDetails))
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -90,7 +96,6 @@ fun MoreInformationScreen(
                         if (state.value.periodLength == 0) "Length of your period" else "${state.value.periodLength} days"
                     ),
                     onSelectionChanged = {
-//                        enableFinishButton = true
                         viewModel.onEvent(MoreInfoEvent.PeriodLength(it.id))
                     },
 
@@ -101,11 +106,10 @@ fun MoreInformationScreen(
                 ATextButton(
                     text = "Finish",
                     onClick = {
-                        navController.navigate("home_nav") {
-                            popUpTo(Screen.Home.route) {
+                        navigator.navigate(HomeScreenDestination.route) {
+                            popUpTo(MoreInformationScreenDestination.route) {
                                 inclusive = true
                             }
-
                         }
                     },
                     modifier = Modifier,

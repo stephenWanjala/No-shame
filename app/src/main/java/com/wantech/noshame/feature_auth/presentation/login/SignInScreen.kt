@@ -16,13 +16,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.wantech.noshame.R
+import com.wantech.noshame.destinations.ForgotPasswordScreenDestination
+import com.wantech.noshame.destinations.HomeScreenDestination
+import com.wantech.noshame.destinations.LoginScreenDestination
+import com.wantech.noshame.destinations.SigUpScreenDestination
 import com.wantech.noshame.feature_auth.presentation.login.componets.TextInPutSection
-import com.wantech.noshame.feature_auth.presentation.util.Screen
 
+@Destination(start = true)
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(
+    navigator: DestinationsNavigator
+) {
     Surface(color = MaterialTheme.colorScheme.background) {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -51,23 +58,24 @@ fun LoginScreen(navController: NavController) {
                     TextInPutSection(
                         buttonLabel = stringResource(id = R.string.sign_in),
                         onClickLoginButton = {
-                            navController.navigate("home_nav") {
-                                popUpTo(route = "auth_nav") {
-                                    inclusive = true
+                            navigator.navigate(HomeScreenDestination.route) {
+                                popUpTo(LoginScreenDestination.route){
+                                    inclusive=true
                                 }
+
                             }
                         },
                         onClickToSignUp = {
-                            navController.navigate(Screen.SignUp.route) {
-                                popUpTo(Screen.SignUp.route) {
-                                    inclusive = true
+                            navigator.navigate(SigUpScreenDestination.route){
+                                popUpTo(LoginScreenDestination.route){
+                                    inclusive=true
                                 }
                             }
                         },
                         onForgetPassword = {
-                            navController.navigate(Screen.ForgotPassword.route) {
-                                popUpTo(Screen.ForgotPassword.route) {
-                                    inclusive = true
+                            navigator.navigate(ForgotPasswordScreenDestination.route) {
+                                 popUpTo(LoginScreenDestination.route){
+                                    inclusive=true
                                 }
                             }
                         }

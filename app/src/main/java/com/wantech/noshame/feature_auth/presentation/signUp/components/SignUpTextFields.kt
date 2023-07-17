@@ -3,7 +3,15 @@ package com.wantech.noshame.feature_auth.presentation.signUp.components
 
 import android.content.res.Configuration
 import android.util.Patterns
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -11,7 +19,13 @@ import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -34,7 +48,7 @@ import com.wantech.noshame.feature_auth.presentation.signUp.SignUpViewModel
 
 fun SignUpTextFields(
     buttonLabel: String,
-    toMoreInforScreen: () -> Unit,
+    toMoreInforScreen: (AuthDetails) -> Unit,
     onClickToLogin: () -> Unit,
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
@@ -122,7 +136,15 @@ fun SignUpTextFields(
 
                     ATextButton(
                         text = stringResource(id = R.string.next),
-                        onClick = toMoreInforScreen,
+                        onClick = {
+                            toMoreInforScreen(
+                                AuthDetails(
+                                    userName = state.userName,
+                                    email = state.email,
+                                    password = state.password
+                                )
+                            )
+                        },
                         modifier = Modifier.fillMaxWidth(0.6f),
                         buttonEnabled = {
                             state.email.isNotBlank() && state.password.isNotBlank() &&
@@ -155,6 +177,7 @@ fun SignUpTextFields(
 
             }
         }
+
         else -> {
             LazyColumn {
                 item {
@@ -203,7 +226,15 @@ fun SignUpTextFields(
 
                         ATextButton(
                             text = buttonLabel,
-                            onClick = toMoreInforScreen,
+                            onClick = {
+                                toMoreInforScreen(
+                                    AuthDetails(
+                                        userName = state.userName,
+                                        email = state.email,
+                                        password = state.password
+                                    )
+                                )
+                            },
                             modifier = Modifier,
                             buttonEnabled = {
                                 state.password.isNotBlank() && (state.password.length >= 8) &&

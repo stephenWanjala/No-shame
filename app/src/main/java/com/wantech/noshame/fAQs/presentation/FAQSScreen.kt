@@ -18,12 +18,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
 import com.wantech.noshame.fAQs.data.dataSource.FAQ
 import com.wantech.noshame.fAQs.data.dataSource.FAQS
 import com.wantech.noshame.fAQs.presentation.components.CardWithToggleableDescription
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
+@Destination
 fun FAQSScreen() {
     val faqs = rememberSaveable {
         mutableStateOf(FAQS.faqs)
