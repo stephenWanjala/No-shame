@@ -1,7 +1,7 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components
 
 import com.wantech.noshame.core.util.UiText
-import com.wantech.noshame.feature_auth.domain.repository.AuthResult
+import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
 
 data class SignUpUIState(
     val userName: String = "",
@@ -38,6 +38,6 @@ data class SignUpUIState(
 
 data class SignUpState(
     val isLoading: Boolean = false,
-    val signUp: AuthResult? = null,
+    val signUp: AuthResponse? = null,
     val error: UiText? = null
 )

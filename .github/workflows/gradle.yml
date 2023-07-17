@@ -5,45 +5,61 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle
+name: Android CI
+
+env:
+  # The name of the main module repository
+  main_project_module: app
+
 
 on:
+  # Triggers the workflow on push or pull request events but only for default and protected branches
   push:
-    branches: [ "master" ]
+    branches: [ master ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ master ]
 
-permissions:
-  contents: read
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
-      - name: Set up JDK
-        uses: actions/setup-java@v2
+      # Set Current Date As Env Variable
+      - name: Set current date as env variable
+        run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # Set Repository Name As Env Variable
+      - name: Set repository name as env variable
+        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '17'
+          cache: 'gradle'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android-sdk@v2
-        with:
-          sdk-platform: 'platforms;android-30'
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
 
-      - name: Build and package APK
-        run: |
-          chmod +x ./gradlew
-          ./gradlew assembleDebug
+      # Run Tests Build
+      - name: Run gradle tests
+        run: ./gradlew test
 
-      - name: Rename APK
-        run: |
-          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/No_Shame.apk
+      # Run Build Project
+      - name: Build gradle project
+        run: ./gradlew build
 
-      - name: Move/Copy APK to different folder
-        run: |
-          mkdir -p /app/apk
-          cp app/build/outputs/apk/debug/No_shame.apk /app/apk/No_shame.apk
+      # Create APK Debug
+      - name: Build apk debug project (APK) - ${{ env.main_project_module }} module
+        run: ./gradlew assembleDebug
+
+     # copy apk to  a  folder /app/apks
+      - name: Copy apk to folder
+        run: cp -r ${{ env.main_project_module }}/build/outputs/apk/debug/*.apk app/apks/

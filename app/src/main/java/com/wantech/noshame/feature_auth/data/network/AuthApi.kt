@@ -10,12 +10,12 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface AuthApi {
-    @POST("auth/signup")
+    @POST("signup")
     suspend fun signUp(@Body request: SignUpRequest): Response<AuthResponse>
 
-    @POST("auth/login")
+    @POST("login")
     suspend fun signIn(@Body loginRequest: LoginRequest): Response<AuthResponse>
 
-    @GET("auth/authenticate")
+    @GET("authenticate")
    suspend fun authenticateUser(@Header("authorization") token:String)
 }
