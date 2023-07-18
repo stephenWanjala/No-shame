@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -56,10 +57,10 @@ class MoreInfoViewModel @Inject constructor(
 
             is MoreInfoEvent.PreviousCycleDate -> {
                 _state.update { it.copy(dayOneOfPreviousCycle = event.date) }
-                if (_state.value.dayOneOfPreviousCycle != null) _state.update {
-                    it.copy(
-                        cycleLengthEnabled = true
-                    )
+                if (_state.value.dayOneOfPreviousCycle != null) {
+                    _state.update {
+                        it.copy(cycleLengthEnabled = true)
+                    }
                 }
             }
 
@@ -89,10 +90,11 @@ class MoreInfoViewModel @Inject constructor(
                 password = password,
                 fullName = fullName,
                 phoneNumber = phoneNumber,
-                lastMensesDate = lastMensesDate,
+                lastMensesDate = lastMensesDate.toDateString(),
                 cycleLength = cycleLength,
                 periodLength = periodLength
             )
+            _state.update { it.copy(isLoading = false) }
             response.collectLatest { authResource ->
                 when (authResource) {
                     is Resource.Error -> {
@@ -114,4 +116,10 @@ class MoreInfoViewModel @Inject constructor(
         }
     }
 
+
+   private  companion object {
+        private val formatter: DateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE
+        fun LocalDate.toDateString(): String = this.format(formatter)
+        fun String.toLocalDate() = LocalDate.parse(this, formatter)
+    }
 }
