@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,7 +53,7 @@ fun SignUpTextFields(
     onClickToLogin: () -> Unit,
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val state = viewModel.state.collectAsState().value
 
 
     val configuration = LocalConfiguration.current
@@ -153,8 +154,6 @@ fun SignUpTextFields(
                                 state.email
                             ).matches())
                         },
-//                        leadingIcon = Icons.Default.ArrowForwardIos
-
                     )
 
                     TextButton(

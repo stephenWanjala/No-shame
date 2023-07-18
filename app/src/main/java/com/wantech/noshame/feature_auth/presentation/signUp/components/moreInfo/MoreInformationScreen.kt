@@ -79,7 +79,6 @@ fun MoreInformationScreen(
                         if (state.value.cycleLength == 0) "Length of your cycle" else "${state.value.cycleLength} days"
                     ),
                     onSelectionChanged = {
-//                        periodLengthEnable = true
                         viewModel.onEvent(MoreInfoEvent.CycleLength(it.id))
                     },
                     isEnabled = { state.value.cycleLengthEnabled }
@@ -106,11 +105,15 @@ fun MoreInformationScreen(
                 ATextButton(
                     text = "Finish",
                     onClick = {
-                        navigator.navigate(HomeScreenDestination.route) {
-                            popUpTo(MoreInformationScreenDestination.route) {
-                                inclusive = true
+                        viewModel.onEvent(MoreInfoEvent.FinishSignUp)
+                        if (state.value.error == null){
+                            navigator.navigate(HomeScreenDestination.route) {
+                                popUpTo(MoreInformationScreenDestination.route) {
+                                    inclusive = true
+                                }
                             }
                         }
+
                     },
                     modifier = Modifier,
                     buttonEnabled = {

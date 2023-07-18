@@ -1,13 +1,11 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo
 
+import com.wantech.noshame.core.util.UiText
+import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
 import com.wantech.noshame.feature_auth.presentation.signUp.components.AuthDetails
 import java.time.LocalDate
 
-data class MoreUserInformation(
-    val dayOneOfPreviousCycle: LocalDate,
-    val cycleLength: Int,
-    val periodLength: Int,
-)
+
 
 data class MoreInfoState(
     val authDetails: AuthDetails? = null,
@@ -17,6 +15,10 @@ data class MoreInfoState(
     val dayOneOfPreviousCycle: LocalDate?=null,
     val cycleLength: Int=0,
     val periodLength: Int=0,
+    val isLoading: Boolean = false,
+    val signUp: AuthResponse? = null,
+    val error: UiText? = null
+
 )
 
 
