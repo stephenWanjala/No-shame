@@ -61,5 +61,9 @@ jobs:
         run: ./gradlew assembleDebug
 
      # copy apk to  a  folder /app/apks
-      - name: Copy apk to folder
-        run: cp -r ${{ env.main_project_module }}/build/outputs/apk/debug/*.apk app/apks/*.apk
+      - name: Copy apk to folder 
+        run: |
+         mkdir -p app/apks
+         cp -rv ${{ env.main_project_module }}/build/outputs/apk/debug/*.apk app/apks/*.apk
+          finally:
+            rm -rf app/apks/*.apk
