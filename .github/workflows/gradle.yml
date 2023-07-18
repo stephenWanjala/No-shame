@@ -62,4 +62,4 @@ jobs:
 
      # copy apk to  a  folder /app/apks
       - name: Copy apk to folder
-        run: cp -r ${{ env.main_project_module }}/build/outputs/apk/debug/*.apk app/apks/
+        run: cp -r ${{ env.main_project_module }}/build/outputs/apk/debug/*.apk app/apks/*.apk
