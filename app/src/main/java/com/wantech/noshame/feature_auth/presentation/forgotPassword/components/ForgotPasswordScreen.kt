@@ -24,7 +24,7 @@ fun ForgotPasswordScreen(navigator: DestinationsNavigator) {
     var emailState by remember {
         mutableStateOf("")
     }
-//    val scaffoldState = rememberScaffoldState()
+
     val scope = rememberCoroutineScope()
     val snackBarHostState = remember {
         SnackbarHostState()

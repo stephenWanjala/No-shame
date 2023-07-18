@@ -1,8 +1,6 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components
 
 import android.os.Parcelable
-import com.wantech.noshame.core.util.UiText
-import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
 
@@ -40,11 +38,6 @@ data class SignUpUIState(
 
 }
 
-data class SignUpState(
-    val isLoading: Boolean = false,
-    val signUp: AuthResponse? = null,
-    val error: UiText? = null
-)
 
 @Parcelize
 data class AuthDetails(
