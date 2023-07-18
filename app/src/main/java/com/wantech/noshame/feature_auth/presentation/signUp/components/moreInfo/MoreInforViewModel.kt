@@ -1,31 +1,28 @@
 package com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class MoreInfoViewModel @Inject constructor() : ViewModel() {
 
-    private val _state = mutableStateOf(InfoState())
-    val state: State<InfoState> = _state
 
-    private val _uiState = MutableStateFlow(MoreInfoState())
-    val uiState = _uiState.asSharedFlow()
+    private val _state = MutableStateFlow(MoreInfoState())
+    val state =
+        _state.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), MoreInfoState())
 
 
     fun onEvent(event: MoreInfoEvent) {
         when (event) {
             is MoreInfoEvent.CycleLength -> {
-                _state.value = state.value.copy(cycleLength = event.cycle)
-                if (state.value.cycleLength != 0) _state.value =
-                    state.value.copy(periodLengthEnabled = true)
+                _state.update { it.copy(cycleLength = event.cycle) }
+                if (state.value.cycleLength != 0) _state.update { it.copy(periodLengthEnabled = true) }
             }
 
             MoreInfoEvent.FinishSignUp -> {
@@ -34,18 +31,20 @@ class MoreInfoViewModel @Inject constructor() : ViewModel() {
 
             is MoreInfoEvent.PeriodLength -> {
                 _state.value = state.value.copy(periodLength = event.length)
-                if (_state.value.periodLength != 0) _state.value =
-                    state.value.copy(isFinishBtnEnabled = true)
+                if (_state.value.periodLength != 0) _state.update { it.copy(isFinishBtnEnabled = true) }
             }
 
             is MoreInfoEvent.PreviousCycleDate -> {
-                _state.value = state.value.copy(previousCycleDate = event.date)
-                if (_state.value.previousCycleDate != null) _state.value =
-                    state.value.copy(cycleLengthEnabled = true)
+               _state.update { it.copy(dayOneOfPreviousCycle = event.date) }
+                if (_state.value.dayOneOfPreviousCycle != null) _state.update {
+                    it.copy(
+                        cycleLengthEnabled = true
+                    )
+                }
             }
 
             is MoreInfoEvent.AuthDetailsUpdate -> {
-                _uiState.update { it.copy(authDetails = event.authDetails) }
+                _state.update { it.copy(authDetails = event.authDetails) }
             }
         }
 
@@ -53,13 +52,3 @@ class MoreInfoViewModel @Inject constructor() : ViewModel() {
     }
 
 }
-
-
-data class InfoState(
-    val previousCycleDate: LocalDate? = null,
-    val cycleLength: Int = 0,
-    val periodLength: Int = 0,
-    val isFinishBtnEnabled: Boolean = false,
-    val periodLengthEnabled: Boolean = false,
-    val cycleLengthEnabled: Boolean = false
-)

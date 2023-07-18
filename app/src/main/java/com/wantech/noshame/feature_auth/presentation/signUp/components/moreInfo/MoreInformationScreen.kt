@@ -34,7 +34,7 @@ fun MoreInformationScreen(
     LockScreenOrientation(orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
     Scaffold { paddingValues ->
 
-        val state = viewModel.state
+        val state = viewModel.state.collectAsState()
         var dateNotNull by remember {
             mutableStateOf(false)
         }

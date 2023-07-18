@@ -10,11 +10,13 @@ data class MoreUserInformation(
 )
 
 data class MoreInfoState(
-    val info: MoreUserInformation? = null,
     val authDetails: AuthDetails? = null,
     val isFinishBtnEnabled: Boolean = false,
     val periodLengthEnabled: Boolean = false,
-    val cycleLengthEnabled: Boolean = false
+    val cycleLengthEnabled: Boolean = false,
+    val dayOneOfPreviousCycle: LocalDate?=null,
+    val cycleLength: Int=0,
+    val periodLength: Int=0,
 )
 
 

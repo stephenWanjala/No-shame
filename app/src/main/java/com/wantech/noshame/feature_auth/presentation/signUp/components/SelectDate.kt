@@ -46,7 +46,7 @@ fun SelectDate(
 
         ) {
         OutlinedTextField(
-            value = viewModel.state.value.previousCycleDate?.format(formatter) ?: "",
+            value = viewModel.state.value.dayOneOfPreviousCycle?.format(formatter) ?: "",
             onValueChange = {dateString->
                 selectedDate = LocalDate.parse(dateString, formatter)
                 viewModel.onEvent(MoreInfoEvent.PreviousCycleDate(LocalDate.parse(dateString, formatter)))
