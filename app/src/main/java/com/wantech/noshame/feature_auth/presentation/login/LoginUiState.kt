@@ -10,6 +10,9 @@ data class LoginUiState(
     val isEmailError: EmailError? = null,
     val isPasswordError: PasswordError? = null,
     val isLoginButtonEnabled: Boolean = false,
+    val isLoading: Boolean = false,
+    val login: AuthResponse? = null,
+    val error: UiText? = null
 ) {
     sealed class EmailError {
         object FieldEmpty : EmailError()

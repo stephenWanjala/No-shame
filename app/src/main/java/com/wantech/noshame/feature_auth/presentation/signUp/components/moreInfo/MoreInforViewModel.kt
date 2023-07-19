@@ -120,6 +120,6 @@ class MoreInfoViewModel @Inject constructor(
    private  companion object {
         private val formatter: DateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE
         fun LocalDate.toDateString(): String = this.format(formatter)
-        fun String.toLocalDate() = LocalDate.parse(this, formatter)
+        fun String.toLocalDate(): LocalDate = LocalDate.parse(this, formatter)
     }
 }

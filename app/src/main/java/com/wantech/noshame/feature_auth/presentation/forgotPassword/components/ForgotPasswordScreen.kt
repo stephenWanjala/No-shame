@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
@@ -30,7 +31,6 @@ fun ForgotPasswordScreen(navigator: DestinationsNavigator) {
         SnackbarHostState()
     }
     Scaffold(
-//        scaffoldState = scaffoldState,
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
 
@@ -84,7 +84,8 @@ fun ForgotPasswordScreen(navigator: DestinationsNavigator) {
 
                         },
                         keyboardOptions = KeyboardOptions(
-                            imeAction = ImeAction.Send
+                            imeAction = ImeAction.Send,
+                            keyboardType = KeyboardType.Email
                         )
                     )
 
