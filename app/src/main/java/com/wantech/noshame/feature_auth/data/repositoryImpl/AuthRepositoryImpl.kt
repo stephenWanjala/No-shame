@@ -12,7 +12,6 @@ import com.wantech.noshame.feature_auth.domain.repository.SaveAuthToken
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import java.time.LocalDate
 import javax.inject.Inject
 
 
@@ -59,7 +58,7 @@ class AuthRepositoryImpl @Inject constructor(
         password: String,
         fullName: String?,
         phoneNumber: String?,
-        lastMensesDate: LocalDate,
+        lastMensesDate: String,
         cycleLength: Int,
         periodLength: Int
     ): Flow<Resource<AuthResponse>> {

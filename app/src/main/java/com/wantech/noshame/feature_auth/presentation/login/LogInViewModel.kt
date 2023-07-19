@@ -1,15 +1,15 @@
 package com.wantech.noshame.feature_auth.presentation.login
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wantech.noshame.core.util.Resource
 import com.wantech.noshame.feature_auth.domain.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,23 +17,28 @@ import javax.inject.Inject
 class LogInViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
-    private val _state = mutableStateOf(LoginUiState())
-    val state: State<LoginUiState> = _state
-    private val _loginState = MutableStateFlow(LoginState())
-    val loginState = _loginState.asSharedFlow()
+    private val _state = MutableStateFlow(LoginUiState())
+    val state = _state.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LoginUiState())
 
+
+    init {
+        authenticate()
+    }
 
     fun onEvent(event: LoginEvent) {
         when (event) {
             is LoginEvent.EnteredEmail -> {
-                _state.value = state.value.copy(email = event.value)
+                _state.update { it.copy(email = event.value) }
             }
+
             is LoginEvent.EnteredPassword -> {
-                _state.value = state.value.copy(password = event.value)
+                _state.update { it.copy(password = event.value) }
             }
+
             LoginEvent.TogglePasswordVisibility -> {
-                _state.value = state.value.copy(isPasswordVisible = !state.value.isPasswordVisible)
+                _state.update { it.copy(isPasswordVisible = !state.value.isPasswordVisible) }
             }
+
             LoginEvent.Login -> {
                 login(email = state.value.email, password = state.value.password)
             }
@@ -43,21 +48,46 @@ class LogInViewModel @Inject constructor(
 
     private fun login(email: String, password: String) {
         viewModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
             repository.signInUserWithEmailAndPassword(email = email, password = password)
-                .onEach { resource ->
+                .collectLatest { resource ->
                     when (resource) {
                         is Resource.Error -> {
-                            _loginState.emit(LoginState(error = resource.uiText))
+                            _state.update { it.copy(error = resource.uiText) }
                         }
+
                         is Resource.Loading -> {
-                            _loginState.emit(LoginState(isLoading = true))
+                            _state.update { it.copy(isLoading = true) }
                         }
+
                         is Resource.Success -> {
-                            _loginState.emit(LoginState(login = resource.data))
+                            _state.update { it.copy(login = resource.data) }
                         }
                     }
 
+
                 }
+            _state.update { it.copy(isLoading = false) }
+        }
+    }
+
+    private fun authenticate() {
+        viewModelScope.launch {
+            val response = repository.authenticate()
+            response.collectLatest { resource ->
+                when (resource) {
+                    is Resource.Error -> _state.update { it.copy(error = resource.uiText) }
+                    is Resource.Loading -> {
+//                        _state.update { it.copy(isLoading = true) }
+                    }
+
+                    is Resource.Success -> {
+                        resource.data?.let { authRes ->
+                            _state.update { it.copy(login = authRes) }
+                        }
+                    }
+                }
+            }
         }
     }
 

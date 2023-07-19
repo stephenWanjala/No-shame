@@ -3,7 +3,6 @@ package com.wantech.noshame.feature_auth.domain.repository
 import com.wantech.noshame.core.util.Resource
 import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
 import kotlinx.coroutines.flow.Flow
-import java.time.LocalDate
 
 interface AuthRepository {
     suspend fun signInUserWithEmailAndPassword(
@@ -17,7 +16,7 @@ interface AuthRepository {
         password: String,
         fullName: String? = null,
         phoneNumber: String? = null,
-        lastMensesDate: LocalDate,
+        lastMensesDate: String,
         cycleLength: Int,
         periodLength: Int
     ): Flow<Resource<AuthResponse>>

@@ -13,7 +13,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.DatePickerDefaults
@@ -46,7 +45,7 @@ fun SelectDate(
 
         ) {
         OutlinedTextField(
-            value = viewModel.state.value.previousCycleDate?.format(formatter) ?: "",
+            value = viewModel.state.value.dayOneOfPreviousCycle?.format(formatter) ?: "",
             onValueChange = {dateString->
                 selectedDate = LocalDate.parse(dateString, formatter)
                 viewModel.onEvent(MoreInfoEvent.PreviousCycleDate(LocalDate.parse(dateString, formatter)))
@@ -110,8 +109,8 @@ fun SelectDate(
 }
 
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun PreviewSelectDate() {
-    SelectDate( modifier = Modifier, { true }, MoreInfoViewModel())
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun PreviewSelectDate() {
+//    SelectDate( modifier = Modifier, { true }, MoreInfoViewModel())
+//}

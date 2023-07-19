@@ -5,5 +5,5 @@ sealed class SignupEvent {
     data class EnteredEmail(val value: String) : SignupEvent()
     data class EnteredPassword(val value: String) : SignupEvent()
     object TogglePasswordVisibility : SignupEvent()
-    object Next : SignupEvent()
+
 }
