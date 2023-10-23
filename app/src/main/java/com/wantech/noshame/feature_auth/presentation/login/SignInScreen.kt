@@ -26,7 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.wantech.noshame.R
 import com.wantech.noshame.core.presentation.components.LoadingDialog
@@ -36,7 +36,7 @@ import com.wantech.noshame.destinations.LoginScreenDestination
 import com.wantech.noshame.destinations.SigUpScreenDestination
 import com.wantech.noshame.feature_auth.presentation.login.componets.TextInPutSection
 
-@RootNavGraph(start = true)
+@Destination(start = true)
 @Composable
 fun LoginScreen(
     navigator: DestinationsNavigator,
