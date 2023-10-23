@@ -24,7 +24,6 @@ import com.wantech.noshame.feature_auth.presentation.signUp.components.moreInfo.
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SelectDate(
     modifier: Modifier,
@@ -66,11 +65,6 @@ fun SelectDate(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             ),
-            colors = TextFieldDefaults.textFieldColors(
-                unfocusedIndicatorColor = MaterialTheme.colorScheme.background,
-                unfocusedLabelColor = MaterialTheme.colorScheme.background,
-                placeholderColor = MaterialTheme.colorScheme.background,
-            ),
             shape = RoundedCornerShape(10.dp),
             readOnly = true
         )
@@ -108,9 +102,3 @@ fun SelectDate(
     }
 }
 
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun PreviewSelectDate() {
-//    SelectDate( modifier = Modifier, { true }, MoreInfoViewModel())
-//}

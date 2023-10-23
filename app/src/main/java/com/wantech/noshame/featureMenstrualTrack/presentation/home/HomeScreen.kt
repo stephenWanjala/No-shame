@@ -1,11 +1,19 @@
 package com.wantech.noshame.featureMenstrualTrack.presentation.home
 
 import android.content.pm.ActivityInfo
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Segment
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
@@ -19,14 +27,17 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.wantech.noshame.R
 import com.wantech.noshame.destinations.FAQSScreenDestination
 import com.wantech.noshame.destinations.MenstrualMythsScreenDestination
-import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.*
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.DayStatistics
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.HomeTopBar
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItemModel
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItems
+import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.StatsSection
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.calendeTrack.PreviousCycleFlow
 import com.wantech.noshame.featureMenstrualTrack.presentation.util.FertilityStatus
 import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 import java.time.LocalDate
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Destination
 @Composable
 fun HomeScreen(navigator: DestinationsNavigator) {
@@ -36,7 +47,7 @@ fun HomeScreen(navigator: DestinationsNavigator) {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.surface
     ) {
-        val selections: SnapshotStateList<LocalDate> = remember { mutableStateListOf<LocalDate>() }
+        val selections: SnapshotStateList<LocalDate> = remember { mutableStateListOf() }
         val selectedDates: MutableList<LocalDate> = mutableListOf()
         (6..10).forEach { num ->
             selectedDates.add(LocalDate.now().minusDays(num.toLong()))
@@ -101,7 +112,7 @@ fun HomeScreen(navigator: DestinationsNavigator) {
                             textAlign = TextAlign.Center
                         )
 
-                        PreviousCycleFlow(selections = selections)
+//                        PreviousCycleFlow(selections = selections)
 
                     }
                 }

@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -57,7 +58,7 @@ fun TextInPutSection(
 
     val configuration = LocalConfiguration.current
     var orientation by remember {
-        mutableStateOf(Configuration.ORIENTATION_PORTRAIT)
+        mutableIntStateOf(Configuration.ORIENTATION_PORTRAIT)
     }
 
     LaunchedEffect(key1 = configuration) {

@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun PasswordTextField(
     modifier: Modifier = Modifier,
@@ -71,13 +71,7 @@ fun PasswordTextField(
                     onSendAction?.let { it() }
                 }
             ),
-            colors = TextFieldDefaults.textFieldColors(
-                unfocusedIndicatorColor = MaterialTheme.colorScheme.background,
-                unfocusedLabelColor = MaterialTheme.colorScheme.background,
-                placeholderColor = MaterialTheme.colorScheme.background,
-//                leadingIconColor = MaterialTheme.colors.background.copy(alpha = 0.9f),
-//                trailingIconColor = MaterialTheme.colors.background.copy(alpha = 0.9f)
-            ),
+
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(
                 '*'
             ),
@@ -144,12 +138,6 @@ fun PasswordTextField(
                     onSendAction?.let { it() }
                 }
             ),
-            colors = TextFieldDefaults.textFieldColors(
-                unfocusedIndicatorColor = MaterialTheme.colorScheme.background,
-                unfocusedLabelColor = MaterialTheme.colorScheme.background,
-                placeholderColor = MaterialTheme.colorScheme.background,
-
-                ),
             visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(
                 '*'
             ),

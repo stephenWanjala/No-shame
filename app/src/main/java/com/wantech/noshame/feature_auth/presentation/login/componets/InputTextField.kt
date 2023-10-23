@@ -18,7 +18,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun InputTextField(
     modifier: Modifier = Modifier,
@@ -46,14 +46,6 @@ fun InputTextField(
             onValueChange = onValueChange,
             keyboardOptions = keyboardOptions,
             label = { Text(text = labelText) },
-//            trailingIcon = {
-//                IconButton(onClick = { /*TODO*/ }) {
-//                    if (trailingIcon != null) {
-//                        Icon(imageVector = trailingIcon, contentDescription = null)
-//                    }
-//                }
-//            },
-//
             placeholder = {
                 Text(text = labelText)
             },
@@ -65,13 +57,6 @@ fun InputTextField(
                     keyBoardController?.hide()
                     onSendAction?.let { it() }
                 }
-            ),
-            colors = TextFieldDefaults.textFieldColors(
-                unfocusedIndicatorColor = MaterialTheme.colorScheme.background,
-                unfocusedLabelColor = MaterialTheme.colorScheme.background,
-                placeholderColor = MaterialTheme.colorScheme.background,
-//                leadingIconColor = MaterialTheme.colorScheme.background.copy(alpha = 0.9f),
-//                trailingIconColor = MaterialTheme.colorScheme.background.copy(alpha = 0.9f)
             ),
             visualTransformation = visualTransformation,
             maxLines = maxLines,
