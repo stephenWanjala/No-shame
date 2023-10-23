@@ -148,4 +148,5 @@ object FAQS {
 
 }
 
-data class FAQ(val question: String, val answer: String)
+data class
+FAQ(val question: String, val answer: String)
