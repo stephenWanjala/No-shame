@@ -1,6 +1,7 @@
 package com.wantech.noshame.feature_auth.presentation.login
 
 
+import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,6 +56,15 @@ fun LoginScreen(
         }
     }
     val context = LocalContext.current
+    val prefs =context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+    val token = prefs.getString("token", null)
+    if (token != null) {
+        navigator.navigate(HomeScreenDestination.route) {
+            popUpTo(LoginScreenDestination.route) {
+                inclusive = true
+            }
+        }
+    }
     LaunchedEffect(state.value.error) {
         state.value.error?.let { uiText ->
             snackbarHostState.showSnackbar(

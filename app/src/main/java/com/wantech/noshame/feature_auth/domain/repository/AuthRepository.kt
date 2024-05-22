@@ -1,6 +1,7 @@
 package com.wantech.noshame.feature_auth.domain.repository
 
 import com.wantech.noshame.core.util.Resource
+import com.wantech.noshame.featureMenstrualTrack.domain.model.CycleDetails
 import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -27,11 +28,13 @@ interface AuthRepository {
 
     suspend fun getUserId(): Flow<String>
     suspend fun authenticate(): Flow<Resource<AuthResponse>>
+
+    suspend fun getCycleDetails(): Flow<Resource<CycleDetails>>
 }
 
 
 interface SaveAuthToken {
-    suspend fun saveAuthToken(token: String)
+    suspend fun saveAuthToken(authResponse: AuthResponse)
 
-    suspend fun getToken(): String?
+    suspend fun getAuthDataPref(): AuthResponse?
 }

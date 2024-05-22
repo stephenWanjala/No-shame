@@ -23,7 +23,7 @@ import javax.inject.Singleton
 object AppModule {
 
 
-    private const val BaseUrl = "http://192.168.1.148:8080/"
+    private const val BASEURL = "https://noshame-backend.onrender.com/"
 
     @Singleton
     @Provides
@@ -44,7 +44,7 @@ object AppModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BaseUrl)
+        .baseUrl(BASEURL)
         .client(okHttpClient)
         .build()
 

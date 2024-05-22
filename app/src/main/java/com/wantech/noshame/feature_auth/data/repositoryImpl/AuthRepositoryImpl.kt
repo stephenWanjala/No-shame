@@ -3,8 +3,12 @@ package com.wantech.noshame.feature_auth.data.repositoryImpl
 import android.content.SharedPreferences
 import com.wantech.noshame.core.util.Resource
 import com.wantech.noshame.core.util.UiText
+import com.wantech.noshame.featureMenstrualTrack.domain.model.CycleDetails
+import com.wantech.noshame.featureMenstrualTrack.domain.model.toDomain
 import com.wantech.noshame.feature_auth.data.network.AuthApi
+import com.wantech.noshame.feature_auth.domain.model.request.AuthInfo
 import com.wantech.noshame.feature_auth.domain.model.request.LoginRequest
+import com.wantech.noshame.feature_auth.domain.model.request.PreviousMensesInfo
 import com.wantech.noshame.feature_auth.domain.model.request.SignUpRequest
 import com.wantech.noshame.feature_auth.domain.model.response.AuthResponse
 import com.wantech.noshame.feature_auth.domain.repository.AuthRepository
@@ -29,7 +33,7 @@ class AuthRepositoryImpl @Inject constructor(
             try {
                 val response = api.signIn(LoginRequest(email = email, password = password))
                 if (!response.isSuccessful) throw HttpException(response)
-                saveToken.saveAuthToken(response.body()!!.token)
+                saveToken.saveAuthToken(response.body()!!)
                 emit(Resource.Success(response.body()!!))
             } catch (e: HttpException) {
                 emit(
@@ -67,14 +71,18 @@ class AuthRepositoryImpl @Inject constructor(
             try {
                 val response = api.signUp(
                     request = SignUpRequest(
-                        userName = userName,
-                        email = email,
-                        password = password,
-                        fullName = fullName,
-                        phoneNumber = phoneNumber,
-                        lastMensesDate = lastMensesDate,
-                        cycleLength = cycleLength,
-                        periodLength = periodLength
+//                        fullName = fullName,
+//                        phoneNumber = phoneNumber,
+                       mensesInfo = PreviousMensesInfo(
+                            lastMensesDate = lastMensesDate,
+                            cycleLength = cycleLength,
+                            periodLength = periodLength
+                        ),
+                        authInfo = AuthInfo(
+                            userName = userName,
+                            email = email,
+                            password = password
+                        )
                     )
                 )
                 if (!response.isSuccessful) throw HttpException(response)
@@ -116,14 +124,53 @@ class AuthRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun authenticate(): Flow<Resource<AuthResponse>> {
-        val token = saveToken.getToken()
+    override suspend fun getCycleDetails(): Flow<Resource<CycleDetails>> {
         return flow {
             emit(Resource.Loading())
             try {
-                if (token.isNullOrEmpty()) throw Exception("Token is null or empty")
-                api.authenticateUser(token = "Bearer $token")
-                emit(Resource.Success(AuthResponse(token = token)))
+                val saveRep = saveToken.getAuthDataPref() ?: throw Exception("Token is null or empty")
+                if (saveRep.token.isEmpty()) throw Exception("Token is null or empty")
+                val response = api.getCycleDetails(token = "Bearer ${saveRep.token}")
+                if (response.isSuccessful) {
+                    emit(Resource.Success(data = response.body()!!.toDomain()))
+                    println("The Response, ${response.body()}")
+                } else {
+                    throw HttpException(response)
+                }
+            } catch (e: HttpException) {
+                emit(
+                    Resource.Error(
+                        UiText.DynamicString(
+                            e.localizedMessage ?: "UnExpected Error happened"
+                        )
+                    )
+                )
+            } catch (e: Exception) {
+                emit(
+                    Resource.Error(
+                        UiText.DynamicString(
+                            e.localizedMessage ?: "UnExpected Error happened"
+                        )
+                    )
+                )
+            }
+        }
+    }
+
+    override suspend fun authenticate(): Flow<Resource<AuthResponse>> {
+
+        return flow {
+            emit(Resource.Loading())
+            try {
+                val saveRep = saveToken.getAuthDataPref() ?: throw Exception("Token is null or empty")
+                if (saveRep.token.isEmpty()) throw Exception("Token is null or empty")
+                val response=api.authenticateUser(token = "Bearer ${saveRep.token}")
+                if(response.isSuccessful){
+
+                    emit(Resource.Success(data = saveRep))
+                } else{
+                    throw HttpException(response)
+                }
             } catch (e: HttpException) {
                 emit(
                     Resource.Error(
@@ -148,12 +195,28 @@ class AuthRepositoryImpl @Inject constructor(
 
 class SaveAuthTokenInSharedPref @Inject constructor(private val pref: SharedPreferences) :
     SaveAuthToken {
-    override suspend fun saveAuthToken(token: String) {
-        pref.edit().putString("token", token).apply()
+    override suspend fun saveAuthToken(authResponse: AuthResponse) {
+        pref.edit().putString("token", authResponse.token).apply()
+        pref.edit().putString("email", authResponse.email).apply()
+        pref.edit().putString("userName", authResponse.userName).apply()
+        pref.edit().putString("fullName", authResponse.fullName).apply()
+        pref.edit().putString("phoneNumber", authResponse.phoneNumber).apply()
+        pref.edit().putString("last_menses_date", authResponse.last_menses_date).apply()
+        pref.edit().putInt("cycle_length", authResponse.cycleLength).apply()
+        pref.edit().putInt("period_length", authResponse.periodLength).apply()
     }
 
-    override suspend fun getToken(): String? {
-        return pref.getString("token", "")
+    override suspend fun getAuthDataPref(): AuthResponse? {
+        return AuthResponse(
+            token = pref.getString("token", "")!!,
+            email = pref.getString("email", "")!!,
+            userName = pref.getString("userName", "")!!,
+            fullName = pref.getString("fullName", "")!!,
+            phoneNumber = pref.getString("phoneNumber", "")!!,
+            last_menses_date = pref.getString("last_menses_date", "")!!,
+            cycleLength = pref.getInt("cycle_length", 0),
+            periodLength = pref.getInt("period_length", 0)
+        )
     }
 }
 

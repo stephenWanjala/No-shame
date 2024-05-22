@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.material3)
     implementation (libs.androidx.material.icons.core)
     implementation (libs.androidx.material.icons.extended)
+    implementation(libs.androidx.core.i18n)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

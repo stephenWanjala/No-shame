@@ -58,7 +58,7 @@ fun DayStatistics(
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = fertilityStatus.status, textAlign = TextAlign.Center,
+                    text = fertilityStatus.name, textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.headlineSmall
                 )
             }
@@ -70,5 +70,5 @@ fun DayStatistics(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewDayStat() {
-    DayStatistics(today = LocalDate.now(), fertilityStatus = FertilityStatus.High)
+    DayStatistics(today = LocalDate.now(), fertilityStatus = FertilityStatus.HIGH)
 }
