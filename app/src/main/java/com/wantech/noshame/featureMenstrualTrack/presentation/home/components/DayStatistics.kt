@@ -38,7 +38,7 @@ fun DayStatistics(
             )
             Text(
                 text = "${(today.month).toString().take(3)} ${today.dayOfMonth}",
-                style = MaterialTheme.typography.headlineSmall
+                style = MaterialTheme.typography.bodyMedium
             )
         }
         Column(modifier = Modifier.fillMaxWidth(.5f)) {
@@ -59,7 +59,7 @@ fun DayStatistics(
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = fertilityStatus.name, textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.headlineSmall
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         }
