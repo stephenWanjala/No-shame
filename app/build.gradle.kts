@@ -4,6 +4,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
     id ("kotlin-parcelize")
+    alias(libs.plugins.compose.compiler)
 
 }
 
@@ -46,15 +47,20 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.13"
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
     namespace ="com.wantech.noshame"
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
+
+    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+
 }
 
 dependencies {
@@ -120,8 +126,6 @@ dependencies {
 
     implementation(libs.composeNeumorphism)
 
-    //systemUi controller
-    implementation (libs.accompanist.systemuicontroller)
 
 
 }

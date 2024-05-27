@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,24 +36,24 @@ fun MenstrualMythsScreen() {
     val myths by rememberSaveable {
         mutableStateOf(MYTHS.myths)
     }
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val scrollBehaviour = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Surface(color = MaterialTheme.colorScheme.background, modifier = Modifier.fillMaxSize()) {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
-                TopAppBar(
+                MediumTopAppBar(
                     title = {
                         Text(
                             text = "Menstrual Myths", textAlign = TextAlign.Center,
                             style = MaterialTheme.typography.titleMedium,
                         )
                     },
-                    scrollBehavior = scrollBehavior,
+                    scrollBehavior = scrollBehaviour,
                 )
             }) { paddingValues: PaddingValues ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .nestedScroll(connection = scrollBehavior.nestedScrollConnection)
+                    .nestedScroll(connection = scrollBehaviour.nestedScrollConnection)
             ) {
 
                 LazyVerticalStaggeredGrid(

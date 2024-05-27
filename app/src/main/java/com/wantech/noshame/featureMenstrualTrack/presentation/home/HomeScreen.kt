@@ -18,9 +18,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -36,7 +33,6 @@ import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.Ho
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItemModel
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItems
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.StatsSection
-import com.wantech.noshame.featureMenstrualTrack.presentation.util.FertilityStatus
 import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
 import com.wantech.noshame.feature_auth.presentation.util.Screen
 import java.time.LocalDate
@@ -78,12 +74,13 @@ fun HomeScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .fillMaxSize()
                     .padding(paddingValues),
 
                 ) {
 
-                if(state.isLoading){
-                    AnimatedVisibility(visible =state.isLoading) {
+                if (state.isLoading) {
+                    AnimatedVisibility(visible = state.isLoading) {
                         LinearProgressIndicator()
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
@@ -92,7 +89,7 @@ fun HomeScreen(
                             textAlign = TextAlign.Center
                         )
                     }
-                } else{
+                } else {
                     StatsSection(
                         averageCycleLength = state.cycleDetails.cycleLength,
                         averageFlow = state.cycleDetails.flowDays.count()
