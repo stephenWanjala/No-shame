@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 fun StatsSection(
     averageCycleLength: Int =30,
     averageFlow:Int =5,
+    remainingDaysToNextCycle: Int
 ) {
     Column(
         modifier = Modifier
@@ -49,6 +50,7 @@ fun StatsSection(
             CustomProgressIndicator(
                 indicatorValue = 13,
                 maxiMumIndicatorValue = averageCycleLength,
+                remainingDaysToNextCycle = remainingDaysToNextCycle,
                 modifier = Modifier,
 
                 )
@@ -179,5 +181,5 @@ fun SubScriptedTextPreview() {
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun StatsPreview() {
-    StatsSection()
+//    StatsSection()
 }

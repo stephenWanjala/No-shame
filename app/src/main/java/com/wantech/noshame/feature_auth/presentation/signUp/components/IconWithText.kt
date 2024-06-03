@@ -3,7 +3,7 @@ package com.wantech.noshame.feature_auth.presentation.signUp.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 fun IConWithText(
     modifier: Modifier,
     onClick: () -> Unit,
-    icon: ImageVector = Icons.Default.ArrowBack,
+    icon: ImageVector = Icons.AutoMirrored.Filled.ArrowBack,
     text: String = "Create Account"
 ) {
     Row(

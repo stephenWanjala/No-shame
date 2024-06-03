@@ -27,6 +27,7 @@ fun CustomProgressIndicator(
     canvasSize: Dp = 150.dp,
     indicatorValue: Int = 0,
     maxiMumIndicatorValue: Int = 30,
+    remainingDaysToNextCycle: Int,
     backgroundIndicatorColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
     backgroundIndicatorStrokeWidth: Float = 20f,
     foregroundIndicatorColor: Color = MaterialTheme.colorScheme.onBackground,
@@ -36,10 +37,10 @@ fun CustomProgressIndicator(
 
     ) {
     var animatedIndicatorValue by remember {
-        mutableStateOf(0f)
+        mutableFloatStateOf(0f)
     }
     var allowedIndicatorValue by remember {
-        mutableStateOf(maxiMumIndicatorValue)
+        mutableIntStateOf(maxiMumIndicatorValue)
     }
     allowedIndicatorValue =
         if (indicatorValue <= maxiMumIndicatorValue) indicatorValue else maxiMumIndicatorValue
@@ -50,7 +51,7 @@ fun CustomProgressIndicator(
 
     val sweepAngle by animateFloatAsState(
         targetValue = (12 * percentage),
-        animationSpec = tween(durationMillis = 1000)
+        animationSpec = tween(durationMillis = 1000), label = ""
     )
 
     MaterialTheme.colorScheme.background
@@ -76,8 +77,8 @@ fun CustomProgressIndicator(
             }
     ) {
         val remainingDays by animateIntAsState(
-            targetValue = (maxiMumIndicatorValue - allowedIndicatorValue),
-            animationSpec = tween(durationMillis = 1000)
+            targetValue = (remainingDaysToNextCycle),
+            animationSpec = tween(durationMillis = 1000), label = ""
         )
         EmbeddedElements(remainingDays = remainingDays)
     }

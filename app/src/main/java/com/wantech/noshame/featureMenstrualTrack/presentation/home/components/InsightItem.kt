@@ -28,7 +28,8 @@ fun InSightsItem(
             .size(100.dp)
             .clip(RoundedCornerShape(20.dp))
             .background(
-                color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.5f), shape = RoundedCornerShape(20.dp)
+                color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.5f),
+                shape = RoundedCornerShape(20.dp)
             )
             .clickable { onInsightItemClick(inSightsItemModel) },
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -47,12 +48,6 @@ fun InSightsItem(
     }
 }
 
-@Preview(showBackground = true, )
-@Composable
-fun InsightItemPreview() {
-    InSightsItem(modifier = Modifier,
-        inSightsItemModel = InSightsItemModel(itemIcon = Icons.Default.Woman, itemName = "woman"),
-        onInsightItemClick = {})
-}
+
 
 

@@ -26,15 +26,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.wantech.noshame.R
-import com.wantech.noshame.destinations.FAQSScreenDestination
-import com.wantech.noshame.destinations.MenstrualMythsScreenDestination
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.DayStatistics
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.HomeTopBar
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItemModel
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.InSightsItems
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.StatsSection
 import com.wantech.noshame.feature_auth.presentation.util.LockScreenOrientation
-import com.wantech.noshame.feature_auth.presentation.util.Screen
 import java.time.LocalDate
 
 @Destination
@@ -92,22 +89,15 @@ fun HomeScreen(
                 } else {
                     StatsSection(
                         averageCycleLength = state.cycleDetails.cycleLength,
-                        averageFlow = state.cycleDetails.flowDays.count()
+                        averageFlow = state.cycleDetails.flowDays.count(),
+                        remainingDaysToNextCycle = state.cycleDetails.daysRemainingToNextFlow
                     )
                     LazyColumn {
                         item {
                             InSightsItems(modifier = Modifier,
                                 insightItems = InSightsItemModel.InsightItems,
                                 onInsightItemClick = { inSightsItemModel, _ ->
-                                    when (inSightsItemModel.itemName) {
-                                        Screen.FAQScreen.route -> {
-                                            navigator.navigate(FAQSScreenDestination.route)
-                                        }
-
-                                        Screen.MythsScreen.route -> {
-                                            navigator.navigate(MenstrualMythsScreenDestination.route)
-                                        }
-                                    }
+                                    navigator.navigate(inSightsItemModel.typedDestination.route)
                                 })
                         }
 
@@ -115,6 +105,7 @@ fun HomeScreen(
                             DayStatistics(
                                 today = LocalDate.now(),
                                 fertilityStatus = state.cycleDetails.fertilityStatusToday,
+                                currentDayInCycle = state.cycleDetails.currentDayInCycle,
                             )
                         }
 

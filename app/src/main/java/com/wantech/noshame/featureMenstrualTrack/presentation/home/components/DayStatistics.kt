@@ -19,7 +19,8 @@ import java.time.LocalDate
 fun DayStatistics(
     today: LocalDate,
     fertilityStatus: FertilityStatus,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    currentDayInCycle: Int
 ) {
 
     Row(
@@ -37,7 +38,7 @@ fun DayStatistics(
                 style = MaterialTheme.typography.labelSmall
             )
             Text(
-                text = "${(today.month).toString().take(3)} ${today.dayOfMonth}",
+                text = "${(today.month).toString().take(3)} ${today.dayOfMonth} -> Day  $currentDayInCycle In Cycle",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -70,5 +71,9 @@ fun DayStatistics(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewDayStat() {
-    DayStatistics(today = LocalDate.now(), fertilityStatus = FertilityStatus.HIGH)
+    DayStatistics(
+        today = LocalDate.now(),
+        fertilityStatus = FertilityStatus.HIGH,
+        currentDayInCycle = 14
+    )
 }
