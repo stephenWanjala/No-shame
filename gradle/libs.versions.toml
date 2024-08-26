@@ -1,7 +1,7 @@
 [versions]
 accompanistPermissions = "0.34.0"
 agp = "8.5.2"
-android-desugar_jdk_libs = "2.0.4"
+android-desugar_jdk_libs = "2.1.0"
 androidx-hiltCompiler = "1.2.0"
 compose = "2.5.4"
 composeNeumorphism = "1.0.0-alpha02"
