@@ -56,8 +56,8 @@ fun MoreInformationScreen(
     }
     LaunchedEffect(key1 = state.value.signUp) {
         state.value.signUp?.let {
-            navigator.navigate(HomeScreenDestination.route) {
-                popUpTo(MoreInformationScreenDestination.route) {
+            navigator.navigate(HomeScreenDestination) {
+                popUpTo(MoreInformationScreenDestination) {
                     inclusive = true
                 }
             }

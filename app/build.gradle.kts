@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.composeCompiler
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
@@ -10,14 +12,14 @@ plugins {
 
 android {
     namespace ="com.wantech.noshame"
-    compileSdk =34
+    compileSdk =35
 
 
 
     defaultConfig {
         applicationId ="com.wantech.noshame"
         minSdk =26
-        targetSdk =34
+        targetSdk =35
         versionCode =1
         versionName= "1.0"
 
@@ -57,8 +59,6 @@ android {
 }
 
 composeCompiler {
-    enableStrongSkippingMode = true
-
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
 
 }
@@ -99,7 +99,6 @@ dependencies {
     implementation(libs.hilt.android)
     ksp (libs.androidx.hilt.compiler)
 
-    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
 
     //Retrofit-

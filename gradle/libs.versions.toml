@@ -8,7 +8,6 @@ composeNeumorphism = "1.0.0-alpha02"
 coroutinesVersion = "1.9.0"
 datetime = "0.9.0"
 destinationsVersion = "1.11.7"
-desugar_jdk_libs = "2.1.2"
 gson = "2.11.0"
 hiltCompiler = "2.52"
 hiltNavigationCompose = "1.2.0"
@@ -44,7 +43,6 @@ datetime-dialogs = { module = "io.github.vanpra.compose-material-dialogs:datetim
 destinations-animations-core = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "destinationsVersion" }
 destinations-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "destinationsVersion" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 desugar_jdk_libs-v202 = { module = "com.android.tools:desugar_jdk_libs", version.ref = "android-desugar_jdk_libs" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltCompiler" }

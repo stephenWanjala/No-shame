@@ -52,14 +52,14 @@ fun SigUpScreen(navigator: DestinationsNavigator) {
                 SignUpTextFields(buttonLabel = stringResource(id = R.string.next),
                     toMoreInforScreen = {authDetails->
                         navigator.navigate(MoreInformationScreenDestination.invoke(authDetails)) {
-                            popUpTo(SigUpScreenDestination.route) {
+                            popUpTo(SigUpScreenDestination) {
                                 inclusive = true
                             }
                         }
                     },
                     onClickToLogin = {
-                        navigator.navigate(LoginScreenDestination.route) {
-                            popUpTo(SigUpScreenDestination.route) {
+                        navigator.navigate(LoginScreenDestination) {
+                            popUpTo(SigUpScreenDestination) {
                                 inclusive = true
                             }
                         }

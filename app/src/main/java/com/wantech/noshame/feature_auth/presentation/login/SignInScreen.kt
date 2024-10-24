@@ -50,8 +50,8 @@ fun LoginScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     LaunchedEffect(state) {
         state.value.login?.let {
-            navigator.navigate(HomeScreenDestination.route) {
-                popUpTo(LoginScreenDestination.route) {
+            navigator.navigate(HomeScreenDestination) {
+                popUpTo(LoginScreenDestination) {
                     inclusive = true
                 }
 
@@ -62,8 +62,8 @@ fun LoginScreen(
     val prefs =context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
     val token = prefs.getString("token", null)
     if (token != null) {
-        navigator.navigate(HomeScreenDestination.route) {
-            popUpTo(LoginScreenDestination.route) {
+        navigator.navigate(HomeScreenDestination) {
+            popUpTo(LoginScreenDestination) {
                 inclusive = true
             }
         }
@@ -109,15 +109,15 @@ fun LoginScreen(
                         TextInPutSection(
                             buttonLabel = stringResource(id = R.string.sign_in),
                             onClickToSignUp = {
-                                navigator.navigate(SigUpScreenDestination.route) {
-                                    popUpTo(LoginScreenDestination.route) {
+                                navigator.navigate(SigUpScreenDestination) {
+                                    popUpTo(LoginScreenDestination) {
                                         inclusive = true
                                     }
                                 }
                             },
                             onForgetPassword = {
-                                navigator.navigate(ForgotPasswordScreenDestination.route) {
-                                    popUpTo(LoginScreenDestination.route) {
+                                navigator.navigate(ForgotPasswordScreenDestination) {
+                                    popUpTo(LoginScreenDestination) {
                                         inclusive = true
                                     }
                                 }

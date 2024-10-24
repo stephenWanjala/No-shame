@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.utils.startDestination
 import com.wantech.noshame.R
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.DayStatistics
 import com.wantech.noshame.featureMenstrualTrack.presentation.home.components.HomeTopBar
@@ -97,7 +98,7 @@ fun HomeScreen(
                             InSightsItems(modifier = Modifier,
                                 insightItems = InSightsItemModel.InsightItems,
                                 onInsightItemClick = { inSightsItemModel, _ ->
-                                    navigator.navigate(inSightsItemModel.typedDestination.route)
+                                   navigator.navigate(inSightsItemModel.typedDestination)
                                 })
                         }
 

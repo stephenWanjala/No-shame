@@ -5,7 +5,9 @@ import androidx.compose.material.icons.filled.CleanHands
 import androidx.compose.material.icons.filled.QueryStats
 import androidx.compose.material.icons.filled.Woman2
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.ActivityNavigator
 import com.wantech.noshame.destinations.Destination
+import com.wantech.noshame.destinations.DirectionDestination
 import com.wantech.noshame.destinations.FAQSScreenDestination
 import com.wantech.noshame.destinations.HygieneTipsScreenDestination
 import com.wantech.noshame.destinations.MenstrualMythsScreenDestination
@@ -13,7 +15,7 @@ import com.wantech.noshame.destinations.MenstrualMythsScreenDestination
 data class InSightsItemModel(
     val itemName: String,
     val itemIcon: ImageVector,
-    val typedDestination: Destination
+    val typedDestination: DirectionDestination
 ) {
 
     companion object {
